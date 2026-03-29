@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category | List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo serif">Personal Space</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="works.html">Works</a>
+            <a href="about.html">About Me</a>
+        </div>
+    </nav>
+    <section class="container fade-in">
+        <h1 id="category-title" class="serif list-header">Category</h1>
+        
+        <!-- Filter Buttons - Only show for poetry category -->
+        <div id="filter-buttons" class="filter-bar" style="display: none; margin: 1rem 0 2rem 0;">
+            <button class="filter-btn active" data-filter="all">All Poems</button>
+            <button class="filter-btn" data-filter="haiku">Haiku Only</button>
+            <button class="filter-btn" data-filter="narrative">Narrative Poems</button>
+        </div>
+        
+        <div id="item-list" class="list-container">
+        </div>
+    </section>
+    <script src="assets/js/main.js"></script>
+    <script>window.onload = loadCategoryList;</script>
+</body>
+</html>
