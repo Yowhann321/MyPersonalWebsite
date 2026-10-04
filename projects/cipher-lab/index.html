@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cipher Lab</title>
+<meta name="description" content="Four classical ciphers written in Python for IT129 Cryptography, ported to run live in the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f3f1ec; --ink:#141414; --muted:#5d6370; --line:#e3e1da;
+  --accent:#d9481f; --accent-ink:#ffffff; --accent-soft:#fbe7de; --warn:#b42318; --warn-soft:#fdecea;
+  --k-kw:#7c3aed; --k-str:#b4381a; --k-com:#8a8f98; --k-num:#c2410c; --k-fn:#1d4ed8;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace; --sans:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121211; --surface:#1b1b19; --surface-2:#161614; --ink:#f2efe9; --muted:#9aa1ad; --line:#272c36;
+    --accent:#ff7a4f; --accent-ink:#1a0b05; --accent-soft:#33190f; --warn:#f97066; --warn-soft:#2c1514;
+    --k-kw:#c4b5fd; --k-str:#ffa585; --k-com:#6b7280; --k-num:#fdba74; --k-fn:#93c5fd;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121211; --surface:#1b1b19; --surface-2:#161614; --ink:#f2efe9; --muted:#9aa1ad; --line:#272c36;
+  --accent:#ff7a4f; --accent-ink:#1a0b05; --accent-soft:#33190f; --warn:#f97066; --warn-soft:#2c1514;
+  --k-kw:#c4b5fd; --k-str:#ffa585; --k-com:#6b7280; --k-num:#fdba74; --k-fn:#93c5fd;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.top{padding:28px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.back{font-size:14px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--ink)}
+.toplinks{display:flex;gap:8px;align-items:center}
+.btn-ghost{font:500 14px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none;cursor:pointer}
+.btn-ghost:hover{border-color:var(--muted)}
+.hero{padding:32px 0 24px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:10px 0 14px}
+h1 .scr{font-family:var(--mono);font-weight:500;color:var(--muted)}
+.hero p{max-width:640px;color:var(--muted);font-size:18px;margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.chips li{font:500 13px var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--muted)}
+
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;margin:16px 0 24px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;font:600 14px var(--sans);color:var(--muted);background:transparent;border:0;border-radius:999px;padding:9px 16px;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+
+.panel[hidden]{display:none}
+.panel-head h2{font-size:28px;letter-spacing:-.01em;margin:0 0 6px}
+.panel-head p{color:var(--muted);margin:0 0 20px;max-width:760px}
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px}
+@media (max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h3{font-size:13px;font-family:var(--mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+textarea,input[type=text]{width:100%;font:15px/1.5 var(--mono);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+textarea{min-height:96px}
+textarea:focus,input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.field{margin-bottom:14px}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+.btn{font:600 15px var(--sans);border-radius:10px;padding:10px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{filter:brightness(1.05)}
+.btn.small{font-size:13px;padding:6px 12px;border-radius:8px}
+.error{display:none;background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:14px}
+.error.on{display:block}
+.result{font:16px/1.5 var(--mono);background:var(--accent-soft);border-radius:10px;padding:12px 14px;min-height:50px;word-break:break-word;white-space:pre-wrap}
+.result.empty{color:var(--muted);font-style:italic;font-family:var(--sans);font-size:14px}
+.result-tools{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+
+.keystrip{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.kc{display:flex;flex-direction:column;align-items:center;min-width:28px;border:1px solid var(--line);border-radius:7px;overflow:hidden;font:500 13px var(--mono)}
+.kc span{padding:2px 6px;width:100%;text-align:center}
+.kc span:first-child{background:var(--surface-2);color:var(--muted)}
+.kc span:last-child{color:var(--accent);font-weight:600}
+.keycard .sub{font-size:13px;color:var(--muted);margin:0 0 6px}
+.keycard p.note{font-size:13px;color:var(--muted);margin:8px 0 12px}
+
+.steps{margin-top:16px}
+.steps .empty{color:var(--muted);font-size:14px;margin:0}
+.stage{margin-bottom:18px}
+.stage:last-child{margin-bottom:0}
+.stage h4{font-size:15px;margin:0 0 4px}
+.stage p{font-size:14px;color:var(--muted);margin:0 0 10px}
+.pairs{display:flex;flex-wrap:wrap;gap:4px}
+.pairs .kc span:last-child{color:var(--ink)}
+.pairs .kc.same span:last-child{color:var(--muted)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table.vt{border-collapse:collapse;font:13px var(--mono);white-space:nowrap}
+table.vt th{position:sticky;left:0;background:var(--surface-2);text-align:left;font:600 12px var(--sans);color:var(--muted);padding:6px 10px;border-right:1px solid var(--line)}
+table.vt td{padding:6px 7px;text-align:center;border-left:1px solid var(--line)}
+table.vt tr+tr td,table.vt tr+tr th{border-top:1px solid var(--line)}
+table.vt tr.sep td,table.vt tr.sep th{border-top:2px solid var(--muted)}
+table.vt tr.res td{color:var(--accent);font-weight:600}
+table.vt td.wrap{color:var(--k-num)}
+.trunc{font-size:13px;color:var(--muted);margin-top:6px}
+
+details.source{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+details.source summary{cursor:pointer;padding:14px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;align-items:baseline;gap:12px}
+details.source summary::-webkit-details-marker{display:none}
+details.source summary::after{content:'+';font-family:var(--mono);color:var(--muted)}
+details.source[open] summary::after{content:'−'}
+details.source summary small{margin-left:auto;font-family:var(--mono);font-weight:400;color:var(--muted)}
+details.source pre{margin:0;max-height:520px;overflow:auto;background:var(--surface-2);border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius);padding:16px 20px;font:13px/1.55 var(--mono);tab-size:4}
+.hljs-keyword,.hljs-meta{color:var(--k-kw)}
+.hljs-string{color:var(--k-str)}
+.hljs-comment{color:var(--k-com);font-style:italic}
+.hljs-number,.hljs-literal{color:var(--k-num)}
+.hljs-title,.hljs-built_in{color:var(--k-fn)}
+
+section.about{margin:56px 0 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:820px){section.about{grid-template-columns:minmax(0,1fr)}}
+section.about h3{text-transform:none;letter-spacing:0;font:600 17px var(--sans);color:var(--ink)}
+section.about p{color:var(--muted);font-size:15px;margin:0}
+section.about code{font-family:var(--mono);font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:5px}
+footer{padding:24px 0 48px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../../index.html#work">← Johann Lijauco · Portfolio</a>
+    <div class="toplinks">
+      <a class="btn-ghost" href="https://github.com/Yowhann321/Encryption-Decryption-Algo" target="_blank" rel="noopener" id="repo-link">View on GitHub ↗</a>
+      <button class="btn-ghost" id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">IT129 · Cryptography project</div>
+    <h1>Cipher Lab <span class="scr" title="“Cipher Lab” with a Caesar shift of 3">/ Flskhu Ode</span></h1>
+    <p>Four classical ciphers I wrote in Python, including one I designed myself. They're ported here so you can try them in the browser. Type a message, encrypt it, and see each step of the math.</p>
+    <ul class="chips"><li>Python</li><li>Cryptography</li><li>Algorithms</li><li>JavaScript port</li></ul>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Ciphers" id="tabs"></nav>
+  <main id="panels"></main>
+
+  <section class="about">
+    <div class="card">
+      <h3>Where it started</h3>
+      <p>The original is a Python console app. <code>Main_Prog.py</code> has a <code>CipherManager</code> class with a menu that describes each cipher and launches it. Each cipher builds its key, takes your input, and prints the steps of the process.</p>
+    </div>
+    <div class="card">
+      <h3>Bringing it to the web</h3>
+      <p>Each algorithm was ported to JavaScript line for line, so the page loads instantly and needs no Python runtime. The rules are the same: letter case is preserved, symbols pass through, and keys are reshuffled on every load. My original Python is under each cipher.</p>
+    </div>
+    <div class="card">
+      <h3>A note on security</h3>
+      <p>These are classical ciphers for learning. Frequency analysis breaks the substitution ciphers, and a repeating key weakens Vernam. Modern systems use ciphers like AES instead.</p>
+    </div>
+  </section>
+
+  <footer>Built for IT129 Cryptography · Original program in Python</footer>
+</div>
+
+<script type="text/plain" id="src-mono">
+import string
+import random
+
+letters = list(string.ascii_lowercase)
+
+        ##Shuffled letters for encryption 
+shuffled = letters[:] #Creates a copy of the letters list
+random.shuffle(shuffled)
+
+##Empty dictionary for key creation
+key = {}
+key_num = {}
+##Create key
+def letter_key():
+    for i,j in zip(letters, shuffled):
+        key[i] = j
+
+def number_key():
+    shuf_num = list(range(10))
+    random.shuffle(shuf_num)
+
+    for i,j in zip(range(0,10),shuf_num):
+        key_num[str(i)] = str(j)
+
+
+
+##Function to display the plaintext and the key text
+def display(key):
+    print("Plain: ", end = " ")
+    for i in key:
+        print(i.upper(), end = " ")
+        
+
+    print()
+
+    print("Key:   ", end = " ")
+    for j in key:
+        print(key[j].upper(), end = " ")
+        
+    print()
+    print()
+
+
+
+
+def process(text, type):
+    rev_key = {v:k for k, v in key.items()}
+    rev_key_num = {v:k for k, v in key_num.items()}
+
+    processed = ""
+
+    if type == "encrypt":
+       print()
+       for i in text:
+           if i.lower() in key:
+               if i.isupper():
+                   processed += key[i.lower()].upper()
+               else:
+                   processed += key[i]
+
+           elif i in key_num:
+               processed += key_num[i]
+           else:
+               processed += i
+
+    elif type == "decrypt":
+        for j in text:
+           if j.lower() in rev_key:
+               if j.isupper():
+                   processed += rev_key[j.lower()].upper()
+               else:
+                   processed += rev_key[j]
+
+           elif j in rev_key_num:
+               processed += rev_key_num[j]
+           else:
+               processed += j
+
+    return processed 
+
+
+def encrypt():
+    print()
+    print("**!!You are encrypting!!**")
+    running = True
+    while running == True:
+        text = input("[Enter your Plaintext Here]: ")
+        if len(text.strip()) == 0:
+            print("I Can't Encrypt nothingness")
+        else:
+            encrypted = process(text, "encrypt")
+            print(f"Your encrypted text is: {[encrypted]}")
+            running = False
+
+
+def decrypt():
+    print()
+    print("**!!You are decrypting!!**")
+    running = True
+    while running == True:
+        text = input("[Enter your Encrypted Text Here]: ")
+        if len(text.strip()) == 0:
+            print("I Can't decrypt nothingness")
+        else:
+            decrypted = process(text, "decrypt")
+            print()
+            print(f"Your decrypted text is: {[decrypted]}")
+            running = False
+
+
+def main():
+    print("This is the Monoalphabetic cipher:")
+    letter_key()
+    number_key()
+
+    print("This is the key for the letters:")
+    display(key)
+    print("This is the key for the numbers:")
+    display(key_num)
+    print()
+
+    print("1 - Encrypt")
+    print("2 - Decrypt")
+    print("3 - Exit ")
+
+    running = True
+
+    while running == True:
+        print()
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            encrypt()
+        elif choice == '2':
+            decrypt()
+        elif choice == '3':
+            print("Good Bye!")
+            running = False
+        else:
+            print("Sorry, but your choice is not on the options")
+       
+
+    ##To display the plain text and its equivalent key
+    
+
+main()</script>
+<script type="text/plain" id="src-vernam">
+##vername Cypher
+## Strictly letters no numbers
+
+
+from sre_parse import parse_template
+import string 
+
+
+##creates a list of letters a-z in lowercase
+low = (string.ascii_lowercase)
+
+key_low = {}
+
+## adds the letter to the dictionary as the key, and generates numbers 1-26 to be assigned as the letter's index
+for i,low_let in zip(range(1,27),low):
+    key_low[low_let] = i
+
+
+## Asks the user for the key that they want to use
+## validates tkey input
+def inp_key():
+    print()
+    print("***!!ENTER KEY!!***")
+    print("Note: Make sure that there are no numeric or special characters in the key")
+    print()
+    running = True
+    while running:
+        key = input("Please enter key: ")
+        if key.isalpha():
+            running = False
+        elif len(key.strip()) == 0:
+            print()
+            print("***Sorry, you can't have Nothingness as the key***")
+            print()
+        else:
+            print()
+            print("***!Your key contains something that isn't part of the alphabet. Remember: No special characters or spaces!***")
+            print()
+    return key
+
+
+##Checks the length of the key if it matches the length of the plain text
+def key_len(key,text):
+    result = key
+    index = 0
+    
+    while len(result) < len(text):
+        result += key[index]
+        index = (index + 1) % len(key)  # Loop back when reaching the end
+    
+    return result
+
+
+
+
+def disp(arr, desc, type):
+    if type == "list":
+        print(f"{desc}",end =" ")
+        for i in arr:
+            print(i.upper(),end = " ")
+        print()
+    elif type == "dict":
+        for j in arr:
+            j = str(key_low[j])
+            if len(j)<2:
+                j ="0"+j
+            print(j, end = " ")
+        print()
+
+
+## This is function that does the encryption and decryption 
+def processor(key, plain, process):
+
+    rev_low = {v:k for k, v in key_low.items()}
+    
+    key = key.lower()
+    processed = ""
+    
+    ##lists for the deconstructed string to be put ito
+    brkn_strng = []
+    letters = []
+    processed_letters = []
+    
+    ##Each character of the plain string gets added including the spaces
+    for i in plain:
+        brkn_strng.append(i)
+    
+    ##This for loop separates the letters from other characters in     
+    for j in brkn_strng:
+        if j.isalpha():
+            letters.append(j.lower())
+
+    ##Display what the key and what the plain text would look like if lined up
+    print()                 
+    print("*************************************************************************")
+    print(f"The Key: {key}")
+    print()                                     
+    
+
+    if len(key) > len(letters):
+        print("##Woops! your key is longer than your plaintext! Let's try again!##")
+        print()
+    else:
+        while len(key) < len(letters):
+            key = key_len(key,letters)
+            print(f"The broken string is: {brkn_strng}")
+            print()
+            disp(letters,"Plaintext:","list")
+            disp(key,"Key:      ","list")
+            print()
+
+        ##For encrypting, the process adds the value of the plaintext to the value of the key
+        if process == "encrypt":
+            print("For Encryption: The Indexes of the Plaintext and the Key is to be Added")
+            print("And if value is greater than 26 which is the last index, then it is to be subtracted by 26.")
+            print()
+            for k,l in zip(letters, key):
+                encrypt = key_low[k] + key_low[l]
+                ##If the result is greater than 26, then it gets subtracted by 26
+                if encrypt > 26:
+                    encrypt -= 26
+                processed_letters.append(rev_low[encrypt])
+
+        ##for decrypting, the value of the encrypted text is subtracted by the value of the key
+        elif process == "decrypt":
+            print("For decryption: The Indexes of the Plaintext and the Key is to be Subtracted")
+            print("And if value is less than or equal to 0, then 26 is to be added to the value.")
+            print()
+            for m,n in zip(letters, key):
+                decrypt = key_low[m] - key_low[n]
+                ##If the result is less than 26, then it gets added 26
+                if decrypt <= 0:
+                    decrypt += 26
+                processed_letters.append(rev_low[decrypt])
+        
+        counter = 0
+        ##This block of code reconstructs the string back together with the encrypted letters 
+        for char in brkn_strng:
+            if char.isalpha():
+                if char.isupper():
+                    processed += processed_letters[counter].upper()
+                    counter += 1
+                else:
+                    processed += processed_letters[counter]
+                    counter += 1
+            else:
+                processed += char
+       ##Explains the Process
+        disp(letters,"Plain:","list")
+        disp(key, "Key:  ","list")
+
+
+        print()
+        print("This are the index values of the letters")
+        print()
+        disp(letters,"None","dict")
+        disp(key,"None","dict")
+        print("---------------------------------------------------------------------")
+        disp(processed_letters,"None","dict")
+        print()
+        return processed
+
+
+
+
+def encrypt():
+    running = True
+    while running == True:
+        ##user input plaintext
+        plain = input("[Type plain text here]: ")
+        ##Calls the key_inp function
+        key = inp_key()
+        ##Calls the processor function 
+        encrypted = processor(key, plain,"encrypt")
+        if encrypted == None:
+            pass
+        else:
+            print()
+            print(f"The encrypted string is [{encrypted}]")
+            print()
+            running = False
+    
+def decrypt():
+    running = True
+    while running == True:
+        ##user input plaintext
+        plain = input("[Type encrypted text here]: ")
+        ##Calls the key_inp function
+        key = inp_key()
+        ##Calls the processor function 
+        encrypted = processor(key, plain,"decrypt")
+        if encrypted == None:
+            pass
+        else:
+            print()
+            print(f"The decrypted string is [{encrypted}]")
+            print()
+            running = False
+
+
+
+
+def main():
+    print("This is the vernam cipher!")
+    print()
+    print("This is what the dictionary of letters and their number equivalent looks like:")
+    print("-------------------------------------------------------------------------------------------------------------------------")
+    for ite,val in key_low.items():
+        print(f"{ite.upper()}:{val}", end = "|")
+    print()
+    print("-------------------------------------------------------------------------------------------------------------------------")
+
+    while True:
+        print("1 - Encrypt")
+        print("2 - Decrypt")
+        print("3 - Exit")
+        choice = input("What would you like to do?: ")
+        print()
+            
+        if choice == '1':
+            encrypt()
+            print()
+
+        elif choice == '2':
+            decrypt()
+            print()
+
+        elif choice == '3':
+            print("Good Bye!")
+            break
+        else:
+            print("Option not found")
+
+main()
+    </script>
+<script type="text/plain" id="src-kama">
+import string
+import random
+
+
+## Creates the list of letters of the Alphabet
+letters = (string.ascii_lowercase)
+##Creates emmpty list to contain two groups of letters
+set1 = []
+set2 = []
+##Empty dictionaries to be containers for the key
+dict_let = {}
+rev_dict = {}
+
+##The function that creates the key
+def key_create():
+    ##This for loop separates the letters, with every other letter going to the set2 list
+    for i,let in zip(range(0,26),letters):
+        if i % 2 == 1:
+            set1.append(letters[i])
+        else:
+            set2.append(letters[i])
+    ##This just shuffles both lists of letters to make it more random
+    random.shuffle(set1)
+    random.shuffle(set2)
+    ##This takes the letters from both lists, and forms them into a dictionary
+    ## the rev_dict is a reverse dictionary of the dict_let since in the kamasutra cipher
+    ## The plaintext is also the key and vice versa
+    for j,k in zip(set1,set2):
+        dict_let[j] = k
+        rev_dict[k] = j
+
+##This is the function that processess the string input
+##Again, since in kamasutra, the plaintext is also the key, the same process could be applied for encrypting and decyrpting
+def process(text):
+    processed = ""
+    for i in text:
+        if i.lower() in dict_let:
+            if i .isupper():
+                processed += dict_let[i.lower()].upper()
+            else:
+                processed += dict_let[i]
+        elif i.lower() in rev_dict:
+            if i.isupper():
+                processed += rev_dict[i.lower()].upper()
+            else:
+                processed += rev_dict[i]
+        else:
+            processed += i
+
+    return processed
+
+## The Function that asks for the user's string input
+def encrypt_decrypt():
+    running = True
+    while running == True:
+        plaintext = input("[Encrypt/Decrypt Text]: ")
+        if len(plaintext.strip()) == 0:
+            print("Woops! I can't process nothingness!")
+        else:
+            encrypted = process(plaintext)
+            print()
+            print(f"The encrypted/decrypted text is: [{encrypted}]")
+            print()
+            running = False
+
+
+def main():
+    key_create()
+    print("This is the Key for the kamasutra cipher")
+    print("This key changes everytime you load the program")
+
+    print("------------------------------")
+    for i in dict_let.keys():
+        print(i.upper(), end = " ")
+    print()
+    for j in rev_dict.keys():
+        print(j.upper(), end = " ")
+    print()
+    print("------------------------------")
+
+    print("Since the Kamasutra cipher is applicable in both directions, therefore, you can encrypt and decrypt with the Same Process")
+    print()
+    print("It's practically similar as the monoalphabetic cipher.")
+    print("But if differs in the sense that instead of a complete jumbled alphabet as the key,")
+    print("it pairs the letters in the same alphabet set.")
+    print()
+    print("Pleases Select an option")
+    print("1 - Encrypt/Decrypt")
+    print("2 - To Exit")
+    print()
+
+    running = True
+    while running == True:
+        choice = input("Enter Option: ")
+        if choice == '1':
+            encrypt_decrypt()
+        elif choice == '2':
+            print("Good Bye!")
+            running = False
+
+
+
+
+main()
+
+</script>
+<script type="text/plain" id="src-custom">
+##Special cipher
+##Combines the vernam cipher and the kamasutra cipher
+##Has special features
+##Reverses the casing of letters
+
+from sre_parse import parse_template
+import string 
+import random
+
+## This is for the key creation of the vernam cipher
+##creates a list of letters a-z in lowercase
+low = (string.ascii_lowercase)
+## Empty dictionary to be filled with the letters for the key, and their indexes in the alphabet for their values
+vern_dict = {}
+
+## DIctionary for kamasutra
+dict_let = {}
+rev_dict = {}
+
+        #functions used for displaying
+##Function used for just displaying, not involved in encryption or decryption
+def disp(arr, desc, type):
+    if type == "list":
+        print(f"{desc}",end =" ")
+        for i in arr:
+            print(i.upper(),end = " ")
+        print()
+    elif type == "dict":
+        print(desc,end=" ")
+        for j in arr:
+            j = str(vern_dict[j])
+            if len(j)<2:
+                j ="0"+j
+            print(j, end = " ")
+        print()
+
+
+## displays the kamasutra 
+def disp_kam(text):
+    print("Performing the Kamasutra Cipher")
+    text = text.strip()
+    letters = []
+    enc = ""
+    for i in text:
+        if i.isalpha():
+            letters.append(i.lower())
+
+    for j in letters:
+        print(j.upper(), end = " ")
+    print()
+
+    for k in letters:
+        if k in dict_let:
+            enc += dict_let[k]
+        elif k in rev_dict:
+            enc += rev_dict[k]
+
+    for l in enc:
+        print(l.upper(), end = " ")
+    print()
+        
+        
+
+
+
+
+        ## Key Creation functions
+
+## adds the letter to the dictionary as the key, and generates numbers 1-26 to be assigned as the letter's index
+def vernam_key():
+    for i,low_let in zip(range(1,27),low):
+        vern_dict[low_let] = i
+
+
+##Creates the key for the kamasutra cipher
+def kam_key():
+    set1 = []
+    set2 = []
+
+    for i,let in zip(range(0,26),low):
+        if i % 2 == 1:
+            set1.append(low[i])
+        else:
+            set2.append(low[i])
+    
+    random.shuffle(set1)
+    random.shuffle(set2)
+
+    for j,k in zip(set1,set2):
+        dict_let[j] = k
+        rev_dict[k] = j
+
+
+
+        ##Functions revolving around validating the key inputs for the vernam cipher
+
+## Asks the user for the key that they want to use
+## validates tkey input
+def inp_key():
+    print()
+    print("***!!ENTER KEY!!***")
+    print("Note: Make sure that there are no numeric or special characters in the key")
+    print()
+    running = True
+    while running:
+        key = input("Please enter key: ")
+        if key.isalpha():
+            running = False
+        elif len(key.strip()) == 0:
+            print()
+            print("***Sorry, you can't have Nothingness as the key***")
+            print()
+        else:
+            print()
+            print("***!Your key contains something that isn't part of the alphabet. Remember: No special characters or spaces!***")
+            print()
+    return key
+
+
+##Checks the length of the key if it matches the length of the plain text
+def key_len(key,text):
+    result = key
+    index = 0
+    
+    while len(result) < len(text):
+        result += key[index]
+        index = (index + 1) % len(key)  # Loop back when reaching the end
+    
+    return result
+
+
+        ##Functions that do the cipher algorithms
+
+
+## The function that does the algorithm for the kamasutra cipher
+def kamasutra(text):
+    processed=""
+    for i in text:
+        if i.lower() in dict_let:
+            if i .isupper():
+                processed += dict_let[i.lower()].lower()
+            else:
+                processed += dict_let[i].upper()
+        elif i.lower() in rev_dict:
+            if i.isupper():
+                processed += rev_dict[i.lower()].lower()
+            else:
+                processed += rev_dict[i].upper()
+        else:
+            processed += i
+
+    return processed
+
+
+## This is function that does the algorithm for the vernam cipher
+def vernam(key, plain, process):
+
+    rev_vern = {v:k for k, v in vern_dict.items()}
+    
+    key = key.lower()
+    processed = ""
+    
+    ##lists for the deconstructed string to be put ito
+    brkn_strng = []
+    letters = []
+    processed_letters = []
+    
+    ##Each character of the plain string gets added including the spaces
+    for i in plain:
+        brkn_strng.append(i)
+    
+    ##This for loop separates the letters from other characters in     
+    for j in brkn_strng:
+        if j.isalpha():
+            letters.append(j.lower())
+
+    ##Display what the key and what the plain text would look like if lined up
+    print()                 
+    print("*************************************************************************")
+    print(f"The Key: {key}")
+    print()                                     
+    
+
+    if len(key) > len(letters):
+        print("##Woops! your key is longer than your plaintext! Think of a shorter one##")
+    else:
+        while len(key) < len(letters):
+            key = key_len(key,letters)
+            print(f"The broken string is: {brkn_strng}")
+            print()
+            print()
+
+        ##For encrypting, the process adds the value of the plaintext to the value of the key
+        if process == "encrypt":
+            print("For Encryption: The Indexes of the Plaintext and the Key is to be Added")
+            print("And if value is greater than 26 which is the last index, then it is to be subtracted by 26.")
+            print()
+            for k,l in zip(letters, key):
+
+                encrypt = vern_dict[k] + vern_dict[l]
+                ##If the result is greater than 26, then it gets subtracted by 26
+                if encrypt > 26:
+                    encrypt -= 26
+                processed_letters.append(rev_vern[encrypt])
+            
+            ## To display the the operation in the numeric values
+            disp(letters,"plain: ",'dict')
+            disp(key,"key: + ",'dict')
+            print("---------------------------------------------------------------------")
+            disp(processed_letters,"result:",'dict')
+
+        ##for decrypting, the value of the encrypted text is subtracted by the value of the key
+        elif process == "decrypt":
+            print("For Decryption: The Indexes of the Plaintext and the Key is to be Subtracted")
+            print("And if value is less than or equal to 0, then 26 is to be added to the value.")
+            print()
+            for m,n in zip(letters, key):
+                decrypt = vern_dict[m] - vern_dict[n]
+                ##If the result is less than 26, then it gets added 26
+                if decrypt <= 0:
+                    decrypt += 26
+                processed_letters.append(rev_vern[decrypt])
+
+            ## To display the the operation in the numeric values
+            disp(letters,"plain: ",'dict')
+            disp(key,"key: - ",'dict')
+            print("---------------------------------------------------------------------")
+            disp(processed_letters,"result:",'dict')
+
+            
+        
+        counter = 0
+        ##This block of code reconstructs the string back together with the encrypted letters 
+        for char in brkn_strng:
+            if char.isalpha():
+                if char.isupper():
+                    processed += processed_letters[counter].upper()
+                    counter += 1
+                else:
+                    processed += processed_letters[counter]
+                    counter += 1
+            else:
+                processed += char
+       ##Explains the Process
+
+        print()
+        print()
+        disp(letters,"Plain: ","list")
+        disp(key,"Key:   ","list")
+        print("---------------------------------------------------------------------")
+        disp(processed_letters,"       ","list")
+        print()
+        
+            
+        
+        return processed
+
+
+        ## Functions for user inputs
+
+##function to be called when encrypting
+def encrypt():
+    running = True
+    while running == True:
+        ##user input plaintext
+        plain = input("[Type plain text here]: ")
+        ##Calls the key_inp function
+        key = inp_key()
+        ##Calls the processor function 
+        encrypted = vernam(key, plain,"encrypt")
+        disp_kam(encrypted)
+        encrypted = kamasutra(encrypted)
+        if encrypted == None:
+            pass
+        else:
+            print()
+            print(f"The encrypted string is [{encrypted}]")
+            print()
+            running = False
+
+##The function to be called when decrypting
+def decrypt():
+    running = True
+    while running == True:
+        ##user input plaintext
+        encr = input("[Type encrypted text here]: ")
+        ##Calls the key_inp function
+        key = inp_key()
+        ##Calls the processor function 
+        print()
+        disp_kam(encr)
+        encr = kamasutra(encr)
+        encrypted = vernam(key, encr,"decrypt")
+        if encrypted == None:
+            pass
+        else:
+            print()
+            print(f"The decrypted string is [{encrypted}]")
+            print()
+            running = False
+
+
+## The main function
+def main():
+    ## Function call for key creation
+    vernam_key()
+    kam_key()
+    
+        ## Displays the information per cipher method
+    ##For vernam
+    print("This is our very own cipher called: Kamasutra the Vernam")
+    print("It combines the vernam cipher and the kamasutra cipher")
+    print()
+    print("This is what the dictionary of letters and their number equivalent looks like for the vernam cipher:")
+    print("-------------------------------------------------------------------------------------------------------------------------")
+    for ite,val in vern_dict.items():
+        print(f"{ite.upper()}:{val}", end = "|")
+    print()
+    print("-------------------------------------------------------------------------------------------------------------------------")
+
+    ##For kamasutra
+    print()
+    print("And this is the key for the Kamasutra cipher:")
+    disp(dict_let, "","list")
+    disp(rev_dict,"","list")
+    print()
+
+
+    while True:
+        print("1 - Encrypt")
+        print("2 - Decrypt")
+        print("3 - Exit")
+        choice = input("What would you like to do?: ")
+        print()
+            
+        if choice == '1':
+            encrypt()
+            print()
+
+        elif choice == '2':
+            decrypt()
+            print()
+
+        elif choice == '3':
+            print("Good Bye!")
+            break
+        else:
+            print("Option not found")
+
+main()
+    
+</script>
+
+<script>
+(function(){
+const ALPHA = 'abcdefghijklmnopqrstuvwxyz';
+const DIGITS = '0123456789';
+const isLetter = c => /^[A-Za-z]$/.test(c);
+const isUpper = c => c >= 'A' && c <= 'Z';
+const num = c => ALPHA.indexOf(c) + 1;
+const pad2 = n => String(n).padStart(2, '0');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const vis = c => c === ' ' ? '␣' : c === '\n' ? '↵' : c;
+function shuffle(arr){ const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const invert = m => new Map([...m].map(([k, v]) => [v, k]));
+
+/* ---------- Key creation (mirrors the Python) ---------- */
+function makeMonoKey(){
+  const s = shuffle(ALPHA), d = shuffle(DIGITS);
+  return { letters: new Map([...ALPHA].map((c, i) => [c, s[i]])), digits: new Map([...DIGITS].map((c, i) => [c, d[i]])) };
+}
+// Kamasutra: odd-index letters vs even-index letters, each shuffled, then paired
+function makeKamaKey(){
+  const set1 = [], set2 = [];
+  [...ALPHA].forEach((c, i) => (i % 2 === 1 ? set1 : set2).push(c));
+  const top = shuffle(set1), bottom = shuffle(set2), swap = new Map();
+  top.forEach((c, i) => { swap.set(c, bottom[i]); swap.set(bottom[i], c); });
+  return { top, bottom, swap };
+}
+
+/* ---------- Algorithms ---------- */
+function mono(text, key, mode){
+  if (!text.trim()) throw new Error(`I can't ${mode} nothingness.`);
+  const L = mode === 'encrypt' ? key.letters : invert(key.letters);
+  const D = mode === 'encrypt' ? key.digits : invert(key.digits);
+  let out = ''; const pairs = [];
+  for (const ch of text) {
+    let r = ch;
+    if (isLetter(ch)) { r = L.get(ch.toLowerCase()); if (isUpper(ch)) r = r.toUpperCase(); }
+    else if (D.has(ch)) r = D.get(ch);
+    out += r; pairs.push([ch, r]);
+  }
+  return { out, pairs };
+}
+function kama(text, key, flipCase){
+  let out = ''; const pairs = [];
+  for (const ch of text) {
+    let r = ch;
+    if (isLetter(ch)) { const m = key.swap.get(ch.toLowerCase()); r = (isUpper(ch) !== !!flipCase) ? m.toUpperCase() : m; }
+    out += r; pairs.push([ch, r]);
+  }
+  return { out, pairs };
+}
+function vernam(text, rawKey, mode){
+  if (!rawKey.trim()) throw new Error("You can't have nothingness as the key.");
+  if (!/^[A-Za-z]+$/.test(rawKey)) throw new Error("Your key contains something that isn't part of the alphabet. No numbers, spaces or special characters.");
+  const key = rawKey.toLowerCase();
+  const letters = [...text].filter(isLetter).map(c => c.toLowerCase());
+  if (key.length > letters.length) throw new Error(`Woops! Your key is longer than your ${mode === 'encrypt' ? 'plaintext' : 'ciphertext'}. Try a shorter one.`);
+  const ext = letters.map((_, i) => key[i % key.length]);
+  const wrapped = [];
+  const res = letters.map((l, i) => {
+    let v = mode === 'encrypt' ? num(l) + num(ext[i]) : num(l) - num(ext[i]);
+    let w = false;
+    if (v > 26) { v -= 26; w = true; }
+    if (v <= 0) { v += 26; w = true; }
+    wrapped.push(w);
+    return ALPHA[v - 1];
+  });
+  let i = 0, out = '';
+  for (const ch of text) { if (isLetter(ch)) { const r = res[i++]; out += isUpper(ch) ? r.toUpperCase() : r; } else out += ch; }
+  return { out, letters, ext, res, wrapped, mode };
+}
+
+/* ---------- Rendering helpers ---------- */
+const kc = (a, b, cls = '') => `<div class="kc ${cls}"><span>${esc(a)}</span><span>${esc(b)}</span></div>`;
+function pairsHTML(pairs){
+  const MAX = 180, shown = pairs.slice(0, MAX);
+  return `<div class="pairs">${shown.map(([a, b]) => kc(vis(a), vis(b), a === b ? 'same' : '')).join('')}</div>` +
+    (pairs.length > MAX ? `<div class="trunc">Showing the first ${MAX} of ${pairs.length} characters.</div>` : '');
+}
+function vernamHTML(v){
+  const MAX = 60, n = Math.min(v.letters.length, MAX), op = v.mode === 'encrypt' ? '+' : '−';
+  const row = (label, f, cls = '') => `<tr class="${cls}"><th>${label}</th>${Array.from({length: n}, (_, i) => f(i)).join('')}</tr>`;
+  return `<div class="tablewrap"><table class="vt">
+    ${row(v.mode === 'encrypt' ? 'Plain' : 'Cipher', i => `<td>${v.letters[i].toUpperCase()}</td>`)}
+    ${row('Key', i => `<td>${v.ext[i].toUpperCase()}</td>`)}
+    ${row('Value', i => `<td>${pad2(num(v.letters[i]))}</td>`, 'sep')}
+    ${row(`Key ${op}`, i => `<td>${pad2(num(v.ext[i]))}</td>`)}
+    ${row('= Result', i => `<td class="${v.wrapped[i] ? 'wrap' : ''}">${pad2(num(v.res[i]))}</td>`, 'sep')}
+    ${row('Letter', i => `<td>${v.res[i].toUpperCase()}</td>`, 'res')}
+  </table></div>` + (v.letters.length > MAX ? `<div class="trunc">Showing the first ${MAX} of ${v.letters.length} letters.</div>` : '');
+}
+const vernamRule = mode => mode === 'encrypt'
+  ? 'Add each letter’s value (A=1 … Z=26) to the key letter’s value. Results over 26 wrap around by subtracting 26 (shown in orange).'
+  : 'Subtract the key letter’s value from each letter’s value. Results of 0 or less wrap around by adding 26 (shown in orange).';
+const stage = (title, desc, body) => `<div class="stage"><h4>${title}</h4><p>${desc}</p>${body}</div>`;
+
+/* ---------- Cipher definitions ---------- */
+const state = { mono: makeMonoKey(), kama: makeKamaKey(), custom: makeKamaKey() };
+
+const CIPHERS = [
+  {
+    id: 'mono', tab: 'Monoalphabetic', title: 'Monoalphabetic Cipher', file: 'mono.py',
+    lede: 'A simple substitution cipher. The alphabet is shuffled into a random key and every letter is swapped for its partner. My version also scrambles the digits 0–9 and keeps upper and lower case intact. A fixed mapping like this can be broken with frequency analysis.',
+    sample: 'Meet me at the library at 7.', modes: ['encrypt', 'decrypt'], usesKey: false,
+    keyHTML: () => `<p class="sub">Letters</p><div class="keystrip">${[...state.mono.letters].map(([a, b]) => kc(a.toUpperCase(), b.toUpperCase())).join('')}</div>
+      <p class="sub">Digits</p><div class="keystrip">${[...state.mono.digits].map(([a, b]) => kc(a, b)).join('')}</div>`,
+    reshuffle: () => { state.mono = makeMonoKey(); },
+    run(mode, text){
+      const r = mono(text, state.mono, mode);
+      return { out: r.out, steps: stage(mode === 'encrypt' ? 'Substitute each character' : 'Reverse the substitution',
+        mode === 'encrypt' ? 'Each letter or digit is looked up in the key. Spaces and punctuation stay the same.' : 'The key is inverted (cipher → plain) and each character is looked up again.',
+        pairsHTML(r.pairs)) };
+    }
+  },
+  {
+    id: 'vernam', tab: 'Vernam', title: 'Vernam Cipher', file: 'vernam.py',
+    lede: 'Letters become numbers (A=1 … Z=26). Each one is added to the matching letter of your key, wrapping past 26. If the key is shorter than the message it repeats, like a Vigenère cipher. A truly random key as long as the message makes it a one-time pad.',
+    sample: 'Attack at dawn', keySample: 'lemon', modes: ['encrypt', 'decrypt'], usesKey: true,
+    keyHTML: () => `<p class="sub">Letter values</p><div class="keystrip">${[...ALPHA].map((c, i) => kc(c.toUpperCase(), i + 1)).join('')}</div>
+      <p class="note">This table is fixed. The secret is the key word you type.</p>`,
+    run(mode, text, key){
+      const v = vernam(text, key, mode);
+      return { out: v.out, steps: stage(`Line up the key and ${mode === 'encrypt' ? 'add' : 'subtract'}`, vernamRule(mode), vernamHTML(v)) };
+    }
+  },
+  {
+    id: 'kama', tab: 'Kamasutra', title: 'Kamasutra Cipher', file: 'Kamasutra.py',
+    lede: 'Described in Vātsyāyana’s Kāma Sūtra, this cipher pairs the letters of the alphabet so each letter swaps with its partner. My key pairs every odd-position letter with an even-position letter at random. The swap undoes itself, so encrypting and decrypting are the same operation.',
+    sample: 'Hello World', modes: ['process'], usesKey: false,
+    keyHTML: () => `<p class="sub">Letter pairs (each swaps with the one below it)</p><div class="keystrip">${state.kama.top.map((c, i) => kc(c.toUpperCase(), state.kama.bottom[i].toUpperCase())).join('')}</div>`,
+    reshuffle: () => { state.kama = makeKamaKey(); },
+    run(mode, text){
+      if (!text.trim()) throw new Error("Woops! I can't process nothingness!");
+      const r = kama(text, state.kama, false);
+      return { out: r.out, steps: stage('Swap each letter with its pair', 'Run the result through again to get the original message back.', pairsHTML(r.pairs)) };
+    }
+  },
+  {
+    id: 'custom', tab: 'My Custom Cipher', title: 'Kamasutra the Vernam', file: 'Custom cipher.py', badge: 'My own design',
+    lede: 'My own cipher combining the two above. The message is first encrypted with Vernam using your key word, then run through a Kamasutra letter swap that also flips the case of every letter. Decrypting runs the same steps in reverse.',
+    sample: 'Hello World', keySample: 'key', modes: ['encrypt', 'decrypt'], usesKey: true,
+    keyHTML: () => `<p class="sub">Kamasutra pairs for this session</p><div class="keystrip">${state.custom.top.map((c, i) => kc(c.toUpperCase(), state.custom.bottom[i].toUpperCase())).join('')}</div>
+      <p class="note">Plus your Vernam key word (A=1 … Z=26). Both are needed to decrypt.</p>`,
+    reshuffle: () => { state.custom = makeKamaKey(); },
+    run(mode, text, key){
+      if (mode === 'encrypt') {
+        const v = vernam(text, key, 'encrypt');
+        const k = kama(v.out, state.custom, true);
+        return { out: k.out, steps:
+          stage('Step 1 · Vernam', vernamRule('encrypt'), vernamHTML(v)) +
+          stage('Step 2 · Kamasutra swap + case flip', 'Each letter swaps with its pair and its case is flipped (upper ↔ lower).', pairsHTML(k.pairs)) };
+      }
+      if (!text.trim()) throw new Error("I can't decrypt nothingness.");
+      const k = kama(text, state.custom, true);
+      const v = vernam(k.out, key, 'decrypt');
+      return { out: v.out, steps:
+        stage('Step 1 · Undo the Kamasutra swap', 'Swap each letter back with its pair and flip its case back.', pairsHTML(k.pairs)) +
+        stage('Step 2 · Vernam', vernamRule('decrypt'), vernamHTML(v)) };
+    }
+  }
+];
+
+/* ---------- Build UI ---------- */
+const tabsEl = document.getElementById('tabs'), panelsEl = document.getElementById('panels');
+const modeLabel = { encrypt: 'Encrypt', decrypt: 'Decrypt', process: 'Encrypt / Decrypt' };
+
+CIPHERS.forEach((c, idx) => {
+  const tab = document.createElement('button');
+  tab.className = 'tab'; tab.type = 'button'; tab.role = 'tab'; tab.id = `tab-${c.id}`;
+  tab.setAttribute('aria-controls', `panel-${c.id}`); tab.textContent = c.tab;
+  tab.addEventListener('click', () => select(c.id));
+  tabsEl.appendChild(tab);
+
+  const p = document.createElement('section');
+  p.className = 'panel'; p.id = `panel-${c.id}`; p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tab.id);
+  p.innerHTML = `
+    <div class="panel-head">
+      <h2>${c.title}${c.badge ? ` <span class="eyebrow" style="vertical-align:middle;margin-left:6px">${c.badge}</span>` : ''}</h2>
+      <p>${c.lede}</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="field"><label for="in-${c.id}">Message</label><textarea id="in-${c.id}" spellcheck="false">${esc(c.sample)}</textarea></div>
+        ${c.usesKey ? `<div class="field"><label for="key-${c.id}">Key word</label><input type="text" id="key-${c.id}" value="${esc(c.keySample)}" autocomplete="off" spellcheck="false"><div class="hint">Letters only, and no longer than the number of letters in the message.</div></div>` : ''}
+        <div class="actions">${c.modes.map((m, i) => `<button class="btn ${i === 0 ? 'primary' : ''}" data-mode="${m}" type="button">${modeLabel[m]}</button>`).join('')}</div>
+        <div class="error" role="alert"></div>
+        <label>Result</label>
+        <div class="result empty" aria-live="polite">Your result will appear here.</div>
+        <div class="result-tools">
+          <button class="btn small" data-act="copy" type="button">Copy</button>
+          <button class="btn small" data-act="swap" type="button">↑ Use result as message</button>
+        </div>
+      </div>
+      <div class="card keycard">
+        <h3>Key</h3>
+        <div class="keybody">${c.keyHTML()}</div>
+        ${c.reshuffle ? `<button class="btn small" data-act="reshuffle" type="button">↻ Generate new key</button>` : ''}
+      </div>
+    </div>
+    <div class="card steps"><h3>Show the work</h3><div class="stepbody"><p class="empty">Run the cipher to see each step.</p></div></div>
+    <details class="source"><summary><span>Original Python source</span><small>${esc(c.file)}</small></summary><pre><code class="language-python"></code></pre></details>`;
+  panelsEl.appendChild(p);
+
+  const $ = s => p.querySelector(s);
+  const input = $(`#in-${c.id}`), keyIn = $(`#key-${c.id}`), err = $('.error'), out = $('.result'), steps = $('.stepbody');
+  let last = c.modes[0];
+
+  function exec(mode){
+    last = mode;
+    try {
+      const r = c.run(mode, input.value, keyIn ? keyIn.value : '');
+      err.classList.remove('on');
+      out.textContent = r.out; out.classList.remove('empty');
+      steps.innerHTML = r.steps;
+    } catch (e) {
+      err.textContent = e.message; err.classList.add('on');
+      out.textContent = 'Your result will appear here.'; out.classList.add('empty');
+      steps.innerHTML = '<p class="empty">Run the cipher to see each step.</p>';
+    }
+  }
+  p.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => exec(b.dataset.mode)));
+  [input, keyIn].filter(Boolean).forEach(el => el.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') exec(last); }));
+  $('[data-act="copy"]').addEventListener('click', e => {
+    if (out.classList.contains('empty')) return;
+    const b = e.currentTarget;
+    (navigator.clipboard ? navigator.clipboard.writeText(out.textContent) : Promise.reject()).then(
+      () => { b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy', 1200); }, () => {});
+  });
+  $('[data-act="swap"]').addEventListener('click', () => { if (!out.classList.contains('empty')) { input.value = out.textContent; input.focus(); } });
+  const rs = $('[data-act="reshuffle"]');
+  if (rs) rs.addEventListener('click', () => {
+    c.reshuffle(); $('.keybody').innerHTML = c.keyHTML();
+    err.classList.remove('on'); out.textContent = 'New key generated. Run the cipher again.'; out.classList.add('empty');
+    steps.innerHTML = '<p class="empty">Run the cipher to see each step.</p>';
+  });
+
+  const src = document.getElementById(`src-${c.id}`);
+  $('code').textContent = src ? src.textContent.replace(/^\s*\n/, '').replace(/\s+$/, '') : '';
+
+  exec(c.modes[0]);
+});
+
+function select(id){
+  CIPHERS.forEach(c => {
+    const on = c.id === id;
+    document.getElementById(`tab-${c.id}`).setAttribute('aria-selected', on);
+    document.getElementById(`panel-${c.id}`).hidden = !on;
+  });
+  try { localStorage.setItem('cipherlab-tab', id); } catch (e) {}
+  if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+}
+let start = location.hash.slice(1);
+if (!CIPHERS.some(c => c.id === start)) { try { start = localStorage.getItem('cipherlab-tab'); } catch (e) { start = null; } }
+select(CIPHERS.some(c => c.id === start) ? start : CIPHERS[0].id);
+
+window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (CIPHERS.some(c => c.id === h)) select(h); });
+
+tabsEl.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const i = CIPHERS.findIndex(c => document.getElementById(`tab-${c.id}`).getAttribute('aria-selected') === 'true');
+  const n = CIPHERS[(i + (e.key === 'ArrowRight' ? 1 : -1) + CIPHERS.length) % CIPHERS.length];
+  select(n.id); document.getElementById(`tab-${n.id}`).focus();
+});
+
+/* Theme toggle */
+const root = document.documentElement;
+try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+});
+
+/* Syntax highlighting (optional, loaded lazily) */
+const hl = document.createElement('script');
+hl.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js';
+hl.onload = () => document.querySelectorAll('details.source code').forEach(el => window.hljs.highlightElement(el));
+document.head.appendChild(hl);
+})();
+</script>
+</body>
+</html>

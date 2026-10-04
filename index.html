@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johann Lijauco · Portfolio</title>
+    <meta name="description" content="Portfolio of Johann Lijauco, a BSIT student at Mapúa Malayan Colleges Laguna building security tools, games, and web apps.">
+    <script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+    <header class="site-header">
+        <div class="wrap">
+            <a class="wordmark" href="index.html">Johann Lijauco</a>
+            <nav aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="index.html#about">About</a>
+                <a href="writing.html">Writing</a>
+                <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero wrap">
+            <p class="label rise"><span class="dot"></span>Portfolio · 2026</p>
+            <h1 class="rise d1">Building tools that make <em>technical ideas</em> tangible.</h1>
+            <div class="hero-grid rise d2">
+                <p class="hero-lede">I'm Johann, an IT student working across security, games, and the web. I like turning things like cryptography or car specs into something people can try for themselves.</p>
+                <dl class="hero-facts">
+                    <div><dt>Currently</dt><dd>4th-year BS Information Technology</dd></div>
+                    <div><dt>School</dt><dd>Mapúa Malayan Colleges Laguna</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="section wrap" id="work">
+            <div class="section-title">
+                <h2>Selected work</h2>
+                <span class="label" id="project-count"></span>
+            </div>
+            <ol class="work-list" id="work-list"></ol>
+        </section>
+
+        <section class="section wrap" id="about">
+            <div class="section-title">
+                <h2>Capabilities</h2>
+                <span class="label">What I work with</span>
+            </div>
+            <div class="caps">
+                <div>
+                    <h3><span class="n">01</span>Languages</h3>
+                    <ul><li>Python</li><li>JavaScript</li><li>HTML &amp; CSS</li></ul>
+                </div>
+                <div>
+                    <h3><span class="n">02</span>Areas</h3>
+                    <ul><li>Information security &amp; cryptography</li><li>Mobile game development</li><li>Web development</li></ul>
+                </div>
+                <div>
+                    <h3><span class="n">03</span>Tools</h3>
+                    <ul><li>Git &amp; GitHub</li><li>GitHub Pages</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section wrap" style="padding-top:24px">
+            <a class="writing-link" href="writing.html">
+                <span>Off the clock, I write poetry.</span>
+                <span class="label"><span id="writing-count">Read</span> →</span>
+            </a>
+        </section>
+
+        <section class="contact wrap" id="contact">
+            <p class="label"><span class="dot"></span>Get in touch</p>
+            <a class="big" href="https://github.com/Yowhann321" target="_blank" rel="noopener">Say hello ↗</a>
+            <p>Want to talk about a project or an opportunity? Find me on GitHub.</p>
+            <!-- Add more contact links here, e.g. an email or LinkedIn profile. -->
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <span>© <span id="year">2026</span> Johann Lijauco</span>
+            <a href="https://github.com/Yowhann321" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
