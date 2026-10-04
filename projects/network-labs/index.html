@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Labs</title>
+<meta name="description" content="Interactive viewer for two Cisco Packet Tracer labs: VLSM subnetting with DHCP and RIPv2, and VTP with inter-VLAN routing.">
+<script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="wrap top">
+  <a class="wordmark" href="../../index.html">Johann Lijauco</a>
+  <nav>
+    <a href="../../index.html#work">Work</a>
+    <a href="../../writing.html">Writing</a>
+    <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <a class="back" href="../../work.html?type=projects&id=network-labs">← Project overview</a>
+    <h1>Network labs, <em>explorable.</em></h1>
+    <p class="lede">Two Cisco Packet Tracer labs from my networking course, rebuilt from the saved files. Click any device to see its configuration, or trace a ping across the network. Every path is worked out from the real configs: VLANs, trunks, DHCP pools and RIP routes.</p>
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Labs" id="lab-tabs"></div>
+
+  <section class="viewer" id="viewer">
+    <div class="canvas-card">
+      <div class="canvas-head">
+        <div>
+          <h2 id="lab-title">Lab</h2>
+          <p id="lab-sub" class="muted"></p>
+        </div>
+        <div class="toggles">
+          <label><input type="checkbox" id="show-ports" checked> Ports</label>
+          <label><input type="checkbox" id="show-zones" checked> Zones</label>
+        </div>
+      </div>
+      <div class="canvas-wrap"><svg id="topo" role="img" aria-label="Network topology"></svg></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <aside class="panel" aria-live="polite">
+      <div class="ptabs" role="tablist">
+        <button role="tab" data-ptab="brief" class="on">Task</button>
+        <button role="tab" data-ptab="device">Device</button>
+        <button role="tab" data-ptab="ping">Ping</button>
+      </div>
+      <div class="pbody" id="pbody"></div>
+    </aside>
+  </section>
+
+  <section class="plan">
+    <h2>Addressing plan</h2>
+    <p class="muted">Subnets sized with VLSM, largest first. “Needed” comes from the lab brief, “usable” from the prefix I chose.</p>
+    <div class="table-scroll"><table id="plan-table"></table></div>
+  </section>
+
+  <section class="details">
+    <div>
+      <h2>What I configured</h2>
+      <ul id="did"></ul>
+    </div>
+    <div>
+      <h2>Skills shown</h2>
+      <ul id="skills"></ul>
+    </div>
+    <div>
+      <h2>About this viewer</h2>
+      <p>Packet Tracer saves labs in an encrypted format. I decoded my two files and turned the devices, links, configurations and command history into this page. Passwords are hidden.</p>
+      <p>The ping tracer follows each frame through switch ports and VLANs, picks the gateway from the DHCP pool, and routes using the RIP networks each router advertises. PC addresses are example DHCP leases, because Packet Tracer doesn't save them; the gateway each PC received is saved, and it matches.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap">© <span id="year">2026</span> Johann Lijauco</footer>
+<script src="labs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
