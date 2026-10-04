@@ -1,6 +1,29 @@
 {
   "projects": [
     {
+      "id": "lekwarta",
+      "title": "LeKwarta",
+      "year": "2026",
+      "category": "Android App · Personal Finance",
+      "summary": "An Android app for tracking spending, income, and transfers, with a spending calendar, finance calculators, and a live stock watchlist.",
+      "tags": [
+        "Kotlin",
+        "Android",
+        "OkHttp",
+        "PHP REST API",
+        "Finnhub API"
+      ],
+      "team": "Course project",
+      "links": [
+        {
+          "label": "Try the interactive demo",
+          "href": "projects/lekwarta/",
+          "primary": true
+        }
+      ],
+      "content": "<p>LeKwarta (“Your money, your court”) is a native Android app for keeping track of where your money goes. Users log in, record expenses, income, and transfers between their cash, bank, and e-wallet accounts, and see their month at a glance.</p><h2>Features</h2><ul><li><b>Dashboard:</b> a monthly calendar that colors each day by expense, income, or both, plus today's spend, monthly spend, and total balance.</li><li><b>Transactions:</b> log expenses by category, income, or account-to-account transfers; filter by type and date; view details or delete entries.</li><li><b>Calculator:</b> simple interest, compound interest (monthly compounding), and loan amortization.</li><li><b>Stocks:</b> a market overview and personal watchlist with live quotes from the Finnhub API, ticker search, and auto-refresh every 60 seconds.</li><li><b>Accounts:</b> login and registration with token-based sessions.</li></ul><h2>How it's built</h2><ul><li>Kotlin with XML layouts and Material Components, targeting Android 7.0 (API 24) and up.</li><li>A single activity with fragments and the Navigation component behind a bottom navigation bar.</li><li>OkHttp calls to a PHP REST API for login, registration, the dashboard summary, and transactions, authenticated with bearer tokens.</li><li>The stock watchlist is stored on the device with SharedPreferences.</li></ul><h2>Interactive demo</h2><p>The app needs its PHP backend to run, so I recreated its screens as a web demo using the app's own colors, layouts, and calculator formulas, with sample data. You can log transactions, flip through the calendar, run the calculators, and manage a watchlist right in the browser.</p>"
+    },
+    {
       "id": "cipher-lab",
       "title": "Cipher Lab",
       "year": "2025",
@@ -24,20 +47,6 @@
       ],
       "content": "<p>Cipher Lab started as a Python console program for our Information Security course. It implements four ciphers: <b>Monoalphabetic</b>, <b>Vernam</b>, <b>Kamasutra</b>, and <b>Kamasutra the Vernam</b>, a cipher our group designed that chains the other two together and flips letter case along the way.</p><h2>What it does</h2><ul><li>Generates a fresh random key every session for the substitution ciphers.</li><li>Encrypts and decrypts while preserving upper and lower case, spaces, and punctuation.</li><li>Explains its work, printing each letter's numeric value, the key it lines up with, and the wrap-around math.</li><li>A <code>CipherManager</code> menu ties the four programs together into one application.</li></ul><h2>Bringing it to the web</h2><p>To make the project easy to try, I ported each algorithm to JavaScript so it runs in the browser with no install. The web version keeps the same rules as the Python original, turns the console explanations into step-by-step tables, and shows the original Python source beside each cipher.</p>",
       "team": "Course group project"
-    },
-    {
-      "id": "iconic-vehicles",
-      "title": "Iconic Vehicles",
-      "year": "2026",
-      "category": "Mobile Game · Team Project",
-      "summary": "A collaborative gacha-style mobile game designed to teach automotive specifications.",
-      "tags": [
-        "Mobile",
-        "Game design"
-      ],
-      "links": [],
-      "content": "<p>Iconic Vehicles is a gacha-style mobile game that teaches players about automotive specifications. Collecting vehicles is the hook, and learning about each car is the reward.</p><h2>Team</h2><p>Ric Bryan Masagca, Paul Jazzmir Entena, Kurt Tracy Amador, and Johann Lijauco.</p>",
-      "team": "Team of 4"
     }
   ],
   "writing": [
