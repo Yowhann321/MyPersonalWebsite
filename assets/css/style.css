@@ -308,3 +308,6 @@ footer.site-footer a { color: var(--muted); }
 @media (min-width: 640px) { .profile-links li:first-child { grid-column: span 2; } }
 .profile-links li { display: flex; }
 .profile-links li > a { flex: 1; }
+/* Links inside the intro: quiet underline, accent on hover. */
+.hero-lede a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: text-decoration-color .15s, color .15s; }
+.hero-lede a:hover { color: var(--accent); text-decoration-color: var(--accent); }
