@@ -303,3 +303,8 @@ footer.site-footer a { color: var(--muted); }
 
 /* Personal writing sits apart from the professional sections, after contact. */
 .off-clock { padding-top: 8px; padding-bottom: 56px; }
+/* Long email address: smaller and allowed to wrap so it fits narrow screens. */
+.profile-links .contact-value { font-size: 18px; overflow-wrap: anywhere; }
+@media (min-width: 640px) { .profile-links li:first-child { grid-column: span 2; } }
+.profile-links li { display: flex; }
+.profile-links li > a { flex: 1; }
