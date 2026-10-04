@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pong Reimagined</title>
-<meta name="description" content="Play Pong Reimagined, a one-button arcade game from a 2023 game jam, rebuilt for the browser.">
+<meta name="description" content="Play Pong Reimagined, a retro pixel arcade game where you are the ball.">
 <script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&family=Rubik+Glitch&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fbfaf7; --surface:#f3f1ec; --ink:#141414; --muted:#6b6a66; --line:#e4e1da; --accent:#d9481f;
@@ -68,8 +68,8 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color
   <section class="wrap intro">
     <div>
       <a class="back" href="../../work.html?type=projects&id=pong-reimagined">← Project overview</a>
-      <h1>Pong Reimagined, <em>playable.</em></h1>
-      <p>A one-button arcade game from a 2023 game jam, rebuilt for the browser. Keep the ball alive, bounce off the green goals, and dodge the voids.</p>
+      <h1>Pong Reimagined, <em>insert coin.</em></h1>
+      <p>A retro pixel arcade game where you are the ball. Flap against gravity, nail perfect goals to build combos, grab coins and power-ups, and dodge the spike mines.</p>
     </div>
     <div class="keys" aria-label="Controls">
       <span><kbd>Space</kbd> / click / tap: flap</span>
@@ -88,26 +88,26 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color
     <div>
       <h2>How to play</h2>
       <ul>
-        <li>Gravity pulls the ball down. Flap to stay in the air.</li>
-        <li>Hit the green goal on the far wall to score and bounce back.</li>
-        <li>Red walls and the spinning green voids destroy you.</li>
-        <li>At 15 and 40 points the ball speeds up and more voids appear.</li>
+        <li>Flap to stay in the air and hit the green goal on each wall.</li>
+        <li>The yellow middle of a goal is a <b>perfect</b>: double points. Three in a row raises your multiplier, up to x5.</li>
+        <li>Red walls and spike mines end the run. Passing a mine closely scores a bonus.</li>
+        <li>Coins unlock 7 ball skins. Power-ups: shield, slow-mo, magnet, and double points.</li>
       </ul>
     </div>
     <div>
-      <h2>What's new in the remake</h2>
+      <h2>What's inside</h2>
       <ul>
-        <li>Runs in any browser, including phones, with no install</li>
-        <li>Menu, countdown, level banners, and a saved best score</li>
-        <li>Fairer voids that flash before they become deadly and never spawn in your path</li>
-        <li>Particles, trails, and glowing goals; screen shake respects reduced-motion settings</li>
-        <li>Sound effects generated in code, so no audio files are needed</li>
+        <li>A real 320×180 pixel screen scaled up crisply, with CRT scanlines</li>
+        <li>Pixel art drawn in code; no image files</li>
+        <li>A chiptune soundtrack synthesized live, speeding up each stage</li>
+        <li>Endless stages with new color themes, drifting mines, and sliding goals</li>
+        <li>Saved high score, best combo, coins, and skins</li>
       </ul>
     </div>
     <div>
-      <h2>The original</h2>
-      <p>Pong Reimagined started as a Python and Pygame game made by Team Xyke for a game jam in October 2023. I was the team's project manager. The hand-drawn backgrounds and sprites are the team's own artwork.</p>
-      <p>The jam version and this remake are both on <a href="https://github.com/Yowhann321/Pong-Reimagined" target="_blank" rel="noopener">GitHub</a>.</p>
+      <h2>Background</h2>
+      <p>The idea comes from a game jam in October 2023, where I was the team's project manager. This version is a complete redesign: new art, sound, gameplay systems, and code.</p>
+      <p>The source is on <a href="https://github.com/Yowhann321/Pong-Reimagined" target="_blank" rel="noopener">GitHub</a>.</p>
     </div>
   </section>
 </main>
@@ -115,7 +115,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color
 
 <script src="game.js"></script>
 <script>
-  PongReimagined.mount(document.getElementById('game'), { assetBase: 'assets/' });
+  PongReimagined.mount(document.getElementById('game'));
   document.getElementById('year').textContent = new Date().getFullYear();
   (function () {
     const root = document.documentElement;
