@@ -8,7 +8,7 @@
 <script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ---------- Page (matches the portfolio) ---------- */
 :root{
@@ -25,7 +25,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans)}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 @media (min-width:720px){.wrap{padding:0 32px}}
-.label{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:24px;padding-bottom:24px}
 .top .wordmark{font:600 17px var(--display);text-decoration:none;white-space:nowrap}
 .top nav{display:flex;align-items:center;gap:18px}
@@ -55,138 +54,193 @@ a{color:inherit}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--muted)}
 
 /* ---------- Phone frame ---------- */
-.phone{width:min(360px,100%);height:740px;border-radius:46px;background:#050505;padding:10px;box-shadow:0 30px 70px -30px rgba(0,0,0,.55),inset 0 0 0 2px #2a2a2a;position:relative}
-@media (max-width:400px){.phone{height:700px;border-radius:38px;padding:8px}}
-.screen{position:relative;height:100%;border-radius:36px;overflow:hidden;background:#0D0D0D;color:#F0F0F0;font:14px/1.4 'Roboto',system-ui,sans-serif;display:flex;flex-direction:column}
+.phone{width:min(370px,100%);height:760px;border-radius:46px;background:#050505;padding:10px;box-shadow:0 30px 70px -30px rgba(0,0,0,.55),inset 0 0 0 2px #2a2a2a;position:relative}
+@media (max-width:400px){.phone{height:720px;border-radius:38px;padding:8px}}
+.screen{position:relative;height:100%;border-radius:36px;overflow:hidden;font:14px/1.4 'Roboto',system-ui,sans-serif;display:flex;flex-direction:column}
 @media (max-width:400px){.screen{border-radius:30px}}
-.statusbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 6px;font-size:12px;font-weight:500;color:#F0F0F0;flex:none}
-.statusbar .cam{width:10px;height:10px;border-radius:50%;background:#1a1a1a;box-shadow:inset 0 0 0 2px #000}
 
-/* ---------- App (colors from res/values/colors.xml) ---------- */
-.app{--bg:#0D0D0D;--card:#1A1A1A;--input:#1E1E1E;--stroke:#2A2A2A;--green:#4ADE80;--green-dark:#1A3D1A;--text:#F0F0F0;--text2:#888888;--hint:#555555;--red:#F87171;--amber:#FBBF24;--blue:#60A5FA;--purple:#A78BFA}
+/* ---------- App: Courtside palette (res/values/colors.xml) ---------- */
+.app{--bg:#120A1C;--nav:#170E24;--card:#1D1230;--card2:#261A3B;--input:#1A1029;--line:#3A2752;--gold:#FDB927;--gold-soft:#33280C;--purple:#552583;--purple-l:#7B45B8;
+  --text:#F5EFE0;--text2:#B9A6D6;--hint:#6E5C8A;--green:#4ADE80;--red:#FF6B6B;--blue:#60A5FA;
+  --h0:#21152F;--h1:#3B2560;--h2:#552583;--h3:#7B45B8;--hover:#8C2F3C;--cond:'Roboto Condensed','Roboto',sans-serif}
+.screen{background:#120A1C;color:#F5EFE0}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 6px;font-size:12px;font-weight:500;flex:none}
+.statusbar .cam{width:10px;height:10px;border-radius:50%;background:#1a1a1a;box-shadow:inset 0 0 0 2px #000}
 .app{flex:1;display:flex;flex-direction:column;min-height:0;color:var(--text)}
-.view{flex:1;overflow-y:auto;padding:8px 18px 90px;scrollbar-width:none}
+.app button{font-family:inherit}
+.view{flex:1;overflow-y:auto;padding:6px 16px 96px;scrollbar-width:none}
 .view::-webkit-scrollbar{display:none}
 .view[hidden]{display:none}
-.app button{font-family:inherit}
-.h-title{font-size:22px;font-weight:700;margin:6px 0 14px}
-.section-lbl{font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--hint);margin:18px 0 8px}
-.card{background:var(--card);border-radius:16px;padding:14px}
+.title{font:700 24px var(--cond);margin:6px 0 2px}
+.sub{color:var(--text2);font-size:12.5px;margin:0 0 14px}
+.lbl{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--hint)}
+.lbl.gold{color:var(--gold)}
+.score{font-family:var(--cond);font-weight:700;color:var(--gold);letter-spacing:.02em}
+.card{background:var(--card);border-radius:16px;padding:12px}
+.court{background:var(--card);border:1.5px solid var(--line);border-radius:18px}
 .row{display:flex;align-items:center;gap:10px}
 .sp{flex:1}
+.pos{color:var(--green)}.neg{color:var(--red)}.trf{color:var(--blue)}
 
 /* auth */
-.auth{position:absolute;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:28px 26px;gap:12px}
+.auth{position:absolute;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px 22px;gap:4px;overflow-y:auto}
 .auth[hidden]{display:none}
-.logo{width:64px;height:64px;border-radius:18px;background:var(--green);color:#0D0D0D;display:grid;place-items:center;font-weight:700;font-size:22px;margin:0 auto 6px}
-.auth h2{text-align:center;margin:0;font-size:26px}
-.auth .tag{text-align:center;color:var(--text2);margin:0 0 18px}
-.field{width:100%;background:var(--input);border:1px solid var(--stroke);border-radius:12px;padding:13px 14px;color:var(--text);font:inherit;font-size:14px}
-.field:focus{outline:none;border-color:var(--green)}
-.btn-green{width:100%;background:var(--green);color:#0D0D0D;border:0;border-radius:12px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}
-.btn-green:active{filter:brightness(.92)}
+.ball{width:76px;height:76px;margin-bottom:10px}
+.auth h2{font:700 32px var(--cond);margin:0}
+.auth .tag{color:var(--gold);margin:0 0 20px;font-size:13.5px}
+.auth .court{width:100%;padding:18px;display:flex;flex-direction:column;gap:10px}
+.field{width:100%;background:var(--input);border:1px solid var(--line);border-radius:13px;padding:13px 14px;color:var(--text);font:inherit;font-size:14px}
+.field::placeholder{color:var(--hint)}
+.field:focus{outline:none;border-color:var(--gold)}
+.btn-gold{width:100%;background:var(--gold);color:var(--bg);border:0;border-radius:13px;padding:14px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.btn-gold:active{filter:brightness(.92)}
+.btn-ghost{width:100%;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:13px;padding:13px;font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
 .link{background:none;border:0;color:var(--text2);font-size:13px;cursor:pointer;padding:6px}
-.link b{color:var(--green);font-weight:500}
-.demo-note{text-align:center;font-size:11px;color:var(--hint);margin-top:6px}
+.note{text-align:center;font-size:11.5px;color:var(--hint);margin-top:10px}
 
 /* home */
-.greet{color:var(--text2);font-size:13px}
-.uname{font-size:20px;font-weight:700}
-.avatar{width:40px;height:40px;border-radius:50%;background:var(--green-dark);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:14px}
-.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.cal-head b{font-size:14px}
-.icon-btn{background:none;border:0;color:var(--text2);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px}
-.icon-btn:hover{background:var(--input);color:var(--text)}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;text-align:center}
-.cal span{height:30px;display:grid;place-items:center;font-size:11px;color:var(--text2)}
-.cal .dh{color:var(--hint);height:22px}
-.cal .today b{width:26px;height:26px;border-radius:50%;background:var(--green);color:#0D0D0D;display:grid;place-items:center;font-weight:500}
-.cal .expense{color:var(--red)} .cal .income{color:var(--green)} .cal .both{color:var(--amber)}
-.legend{display:flex;gap:14px;justify-content:center;margin-top:8px;font-size:11px;color:var(--text2)}
-.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.stat{background:var(--card);border-radius:14px;padding:10px 12px}
-.stat small{display:block;color:var(--text2);font-size:11px}
-.stat b{font-size:15px}
-.txn{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--card);border-radius:14px;margin-bottom:6px;cursor:pointer;width:100%;border:0;color:inherit;text-align:left}
-.txn:hover{background:#202020}
-.txn .ic{width:38px;height:38px;border-radius:12px;background:var(--input);display:grid;place-items:center;font-size:18px;flex:none}
-.txn .nm{font-size:14px;font-weight:500}
-.txn .ac{font-size:12px;color:var(--text2)}
-.txn .amt{font-weight:500;font-size:14px;white-space:nowrap}
-.neg{color:var(--red)} .pos{color:var(--green)} .trf{color:var(--blue)}
-.fab{position:absolute;right:18px;bottom:78px;width:52px;height:52px;border-radius:16px;background:var(--green);color:#0D0D0D;border:0;font-size:26px;cursor:pointer;box-shadow:0 8px 20px -6px rgba(74,222,128,.5);z-index:5}
-.fab[hidden]{display:none}
-.empty{text-align:center;color:var(--hint);padding:30px 0;white-space:pre-line;font-size:13px}
-
-/* transactions */
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.greet{color:var(--text2);font-size:12.5px}
+.uname{font:700 21px var(--cond)}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--purple);color:var(--gold);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.scoreboard{position:relative;overflow:hidden;text-align:center;padding:14px 16px 12px;margin-top:12px}
+.scoreboard::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:var(--line)}
+.scoreboard::after{content:'';position:absolute;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border:1.5px solid var(--line);border-radius:50%}
+.scoreboard > *{position:relative;z-index:1}
+.scoreboard .lbl.gold,.scoreboard .big{background:var(--card);padding:0 8px;display:inline-block}
+.scoreboard .big{font-size:34px;line-height:1.1}
+.sb-row{display:flex;justify-content:space-between;margin-top:8px;text-align:left}
+.sb-row div:last-child{text-align:right}
+.sb-row .score{font-size:16px}
+.shot{display:flex;gap:14px;align-items:center;margin-top:10px;cursor:pointer}
+.shot svg{width:62px;height:62px;flex:none}
+.shot .main{font-size:16px;font-weight:700}
+.shot .meta{font-size:11.5px;color:var(--text2)}
+.streak{display:inline-block;margin-top:5px;background:var(--gold-soft);color:var(--gold);border-radius:20px;padding:2px 10px;font-size:11.5px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cal-head b{font:700 15px var(--cond)}
+.icon-btn{background:none;border:0;color:var(--text2);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1}
+.icon-btn:hover{background:var(--card2);color:var(--text)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.cal .dh{font-size:10.5px;color:var(--hint);padding:2px 0}
+.cal button{height:32px;border:0;border-radius:8px;font-size:11.5px;color:var(--text);cursor:pointer;padding:0}
+.cal button.inc{color:var(--green)}
+.cal button.today{box-shadow:inset 0 0 0 2px var(--gold);font-weight:700}
+.cal button.sel{background:var(--gold)!important;color:var(--bg)!important;font-weight:700}
+.cal button:disabled{color:var(--hint);cursor:default}
+.legend{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:9px;font-size:10.5px;color:var(--hint);flex-wrap:wrap}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend span{margin:0 5px}
+.day-head{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 8px}
+.day-head small{font-size:11px;color:var(--hint)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px}
 .chips::-webkit-scrollbar{display:none}
-.chip{border:1px solid var(--stroke);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font-size:12px;cursor:pointer;white-space:nowrap}
-.chip.on{background:var(--green);border-color:var(--green);color:#0D0D0D;font-weight:500}
-.date-filter{display:flex;align-items:center;gap:6px;background:var(--card);border:0;color:var(--text);border-radius:10px;padding:7px 12px;font-size:12px;cursor:pointer}
-.group-lbl{font-size:11px;color:var(--hint);letter-spacing:.08em;margin:14px 0 6px;text-transform:uppercase}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font-size:12px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:500}
+.txn{display:flex;align-items:center;gap:11px;padding:10px 11px;background:var(--card);border-radius:15px;margin-bottom:7px;cursor:pointer;width:100%;border:0;color:inherit;text-align:left}
+.txn:hover{background:var(--card2)}
+.txn .ic{width:38px;height:38px;border-radius:11px;background:var(--card2);display:grid;place-items:center;font-size:17px;flex:none}
+.txn .nm{font-size:13.5px;font-weight:700}
+.txn .ac{font-size:11.5px;color:var(--text2)}
+.txn .amt{font:700 14px var(--cond);text-align:right}
+.txn .tm{font-size:10.5px;color:var(--hint);text-align:right}
+.empty{text-align:center;color:var(--hint);padding:24px 0;white-space:pre-line;font-size:12.5px}
+.fab{position:absolute;right:16px;bottom:78px;width:54px;height:54px;border-radius:16px;background:var(--gold);color:var(--bg);border:0;font-size:28px;cursor:pointer;box-shadow:0 8px 22px -8px rgba(253,185,39,.6);z-index:5;line-height:1}
+.fab[hidden]{display:none}
+.fab.wide{width:auto;padding:0 18px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 
 /* calculator */
-.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border-radius:12px;overflow:hidden;margin-bottom:14px}
-.seg button{background:var(--card);color:var(--hint);border:0;padding:10px 0;font-size:13px;font-weight:500;cursor:pointer}
-.seg button.on{background:var(--green-dark);color:var(--green)}
-.calc-form label{display:block;font-size:12px;color:var(--text2);margin:10px 0 5px}
-.result{margin-top:16px;background:var(--card);border-radius:16px;padding:16px;text-align:center}
-.result small{color:var(--text2);font-size:12px}
-.result b{display:block;font-size:28px;color:var(--green);margin:4px 0}
-.result span{font-size:12px;color:var(--text2)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.seg button{background:var(--input);border:1px solid var(--line);color:var(--text2);border-radius:12px;padding:10px 0;font-size:13px;font-weight:700;cursor:pointer}
+.seg button.on{background:var(--gold-soft);border:1.5px solid var(--gold);color:var(--gold)}
+.hintline{font-size:11.5px;color:var(--hint);margin:8px 0 2px}
+.form label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);margin:12px 0 5px}
+.result{margin-top:14px;text-align:center;padding:16px}
+.result .score{display:block;font-size:32px;margin:2px 0}
+.result span{font-size:12px;color:var(--text2);white-space:pre-line}
 
 /* stocks */
-.upd{font-size:11px;color:var(--hint)}
-.idx-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}
+.upd{font-size:11px;color:var(--text2)}
+.idx-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:8px -16px 0;padding:0 16px}
 .idx-strip::-webkit-scrollbar{display:none}
-.idx{flex:none;width:118px;background:var(--card);border-radius:14px;padding:10px 12px}
-.idx small{color:var(--text2);font-size:11px;display:block}
-.idx b{font-size:14px;display:block;margin:2px 0}
-.chg{font-size:11px;font-weight:500;border-radius:6px;padding:1px 6px;display:inline-block}
-.chg.up{background:rgba(74,222,128,.12);color:var(--green)}
-.chg.down{background:rgba(248,113,113,.12);color:var(--red)}
-.stock{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:14px;padding:10px 12px;margin-bottom:6px}
-.tick{width:38px;height:38px;border-radius:12px;background:var(--green-dark);color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
-.stock .nm{font-weight:500}
-.stock .co{font-size:12px;color:var(--text2)}
+.idx{flex:none;width:118px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.idx small{color:var(--text2);font-size:10.5px;display:block}
+.idx b{font-size:13px;display:block}
+.idx .score{font-size:15px;display:block;margin:6px 0 4px}
+.chg{font-size:10.5px;font-weight:500;border-radius:6px;padding:1px 6px;display:inline-block}
+.chg.up{background:#14301F;color:var(--green)}
+.chg.down{background:#3A1620;color:var(--red)}
+.stock{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:10px 12px;margin-bottom:7px}
+.tick{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.stock .nm{font-weight:700}
+.stock .co{font-size:11.5px;color:var(--text2)}
 .stock .px{text-align:right}
-.stock .px b{display:block;font-size:14px}
+.stock .px .score{display:block;font-size:14px}
 .rm{background:none;border:0;color:var(--hint);font-size:16px;cursor:pointer;padding:4px}
 .rm:hover{color:var(--red)}
 
-.placeholder{height:100%;display:grid;place-items:center;color:var(--text2);text-align:center;padding-top:120px}
-.placeholder div{font-size:34px;margin-bottom:8px}
+/* accounts */
+.wallet{position:relative;overflow:hidden;height:118px;border-radius:20px;padding:15px 16px;margin-bottom:10px;cursor:pointer;color:#fff;display:flex;flex-direction:column;border:0;width:100%;text-align:left}
+.wallet::after{content:'';position:absolute;right:-48px;top:50%;width:140px;height:140px;margin-top:-70px;border:2px solid rgba(255,255,255,.2);border-radius:50%}
+.wallet .t{font-size:10.5px;letter-spacing:.14em;opacity:.8;display:flex;justify-content:space-between}
+.wallet .n{font:700 17px var(--cond);margin-top:3px}
+.wallet .b{font:700 22px var(--cond);margin-top:auto}
+.swatches{display:flex;gap:10px}
+.swatches button{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer}
+.swatches button.on{box-shadow:0 0 0 3px var(--gold)}
+
+/* more */
+.profile{display:flex;gap:12px;align-items:center}
+.profile .avatar{width:50px;height:50px;font-size:17px}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.stats3 .score{font-size:16px;display:block}
+.bars-m{display:flex;align-items:flex-end;height:96px;gap:4px;margin-top:8px}
+.bars-m div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+.bars-m i{width:12px;border-radius:4px;display:block;min-height:3px}
+.bars-m span{font-size:10px;color:var(--hint)}
+.catbar{margin-top:9px}
+.catbar .row{font-size:12.5px}
+.catbar small{color:var(--text2);font-size:11.5px}
+.track{height:6px;border-radius:3px;background:var(--h0);margin-top:5px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--gold);border-radius:3px}
+.settings{padding:0;overflow:hidden}
+.settings button{display:flex;width:100%;align-items:center;gap:8px;background:none;border:0;border-bottom:1px solid var(--line);color:var(--text);padding:15px 14px;font-size:14px;cursor:pointer;text-align:left}
+.settings button:last-child{border-bottom:0}
+.settings button:hover{background:var(--card2)}
+.settings .v{margin-left:auto;color:var(--text2)}
+.settings .chev{color:var(--hint)}
 
 /* bottom nav */
-.bnav{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:#111;border-top:1px solid #1d1d1d;padding:8px 4px 16px;z-index:6}
-.bnav button{background:none;border:0;color:var(--hint);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;cursor:pointer}
-.bnav button svg{width:22px;height:22px}
-.bnav button.on{color:var(--green)}
+.bnav{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:var(--nav);border-top:1px solid var(--line);padding:8px 2px 16px;z-index:6}
+.bnav button{background:none;border:0;color:var(--hint);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;cursor:pointer}
+.bnav svg{width:22px;height:22px}
+.bnav button.on{color:var(--gold);font-weight:700}
 
 /* sheets, dialogs, toast */
 .overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);z-index:20;display:flex;align-items:flex-end}
+.overlay.center{align-items:center;padding:20px}
 .overlay[hidden]{display:none}
-.sheet{width:100%;max-height:88%;overflow-y:auto;background:var(--card);border-radius:22px 22px 0 0;padding:18px 18px 22px;animation:up .22s ease-out}
+.sheet{width:100%;max-height:90%;overflow-y:auto;background:var(--card);border-radius:24px 24px 0 0;padding:14px 18px 20px;animation:up .22s ease-out;scrollbar-width:none}
+.overlay.center .sheet{border-radius:6px;max-height:80%;padding:20px 20px 10px}
 @keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
-.sheet h3{margin:0 0 14px;font-size:18px}
-.sheet label{display:block;font-size:12px;color:var(--text2);margin:12px 0 6px}
-.types{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.types button{background:var(--input);border:1px solid var(--stroke);color:var(--text2);border-radius:10px;padding:9px 0;font-size:13px;cursor:pointer}
-.types button.on{background:var(--green-dark);border-color:var(--green);color:var(--green)}
-.cats{display:flex;flex-wrap:wrap;gap:6px}
-select.field{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#888 50%),linear-gradient(135deg,#888 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
-.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
-.btn-ghost{background:var(--input);border:1px solid var(--stroke);color:var(--text);border-radius:12px;padding:12px;font-size:14px;cursor:pointer}
-.btn-red{background:rgba(248,113,113,.14);border:1px solid rgba(248,113,113,.4);color:var(--red);border-radius:12px;padding:12px;font-size:14px;cursor:pointer}
-.kv{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--stroke);font-size:14px}
-.kv span:first-child{color:var(--text2)}
-.err{color:var(--red);font-size:12px;min-height:16px;margin-top:8px}
-.results{margin-top:8px;max-height:220px;overflow-y:auto}
-.res{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--stroke);color:var(--text);padding:10px 2px;cursor:pointer;text-align:left}
+.grab{width:40px;height:4px;background:var(--line);margin:0 auto 12px;border-radius:2px}
+.sheet h3{margin:0 0 6px;font:700 21px var(--cond)}
+.sheet label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);margin:12px 0 6px}
+.cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.cats::-webkit-scrollbar{display:none}
+select.field{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#B9A6D6 50%),linear-gradient(135deg,#B9A6D6 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+select.field option{background:var(--card2)}
+input[type=date].field{color-scheme:dark}
+.amount{font:700 19px var(--cond);color:var(--gold)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.actions.three{grid-template-columns:auto 1fr 1fr}
+.btn-red{background:transparent;border:1px solid var(--line);color:var(--red);border-radius:13px;padding:13px 14px;font-size:14px;font-weight:500;text-transform:uppercase;cursor:pointer}
+.err{color:var(--red);font-size:12.5px;min-height:16px;margin-top:8px}
+.dlg-text{color:var(--text2);font-size:14px;margin:6px 0 0;white-space:pre-line}
+.dlg-actions{display:flex;justify-content:flex-end;gap:4px;margin-top:14px}
+.dlg-actions button{background:none;border:0;color:var(--gold);font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;cursor:pointer;font-size:13.5px}
+.res{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);color:var(--text);padding:10px 2px;cursor:pointer;text-align:left}
 .res small{color:var(--text2)}
-.toast{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);background:#2a2a2a;color:var(--text);font-size:13px;padding:9px 16px;border-radius:999px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.toast{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);background:#ECE6F5;color:#1D1230;font-size:13px;padding:9px 16px;border-radius:999px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1}
 </style>
 </head>
@@ -205,11 +259,11 @@ select.field{appearance:none;background-image:linear-gradient(45deg,transparent 
     <div class="intro">
       <a class="back" href="../../work.html?type=projects&id=lekwarta">← Project overview</a>
       <h1>LeKwarta, <em>in your browser.</em></h1>
-      <p>LeKwarta is an Android app I built in Kotlin for tracking money: spending, income, transfers, and stocks. This is an interactive recreation of the app with sample data, so you can try it without installing anything.</p>
+      <p>LeKwarta is an Android finance app in Kotlin, styled like a basketball arena. This is a working recreation of every screen with sample data, so you can try it without installing anything.</p>
       <ul class="tips">
-        <li><b>Log in</b> with anything. Accounts aren't checked in the demo.</li>
-        <li><b>Tap +</b> to log an expense, income, or transfer, and watch the dashboard update.</li>
-        <li><b>Try the calculator</b>. It uses the same formulas as the app's Kotlin code.</li>
+        <li><b>Tap +</b> to log a play. The shot clock, calendar, and account balances update right away.</li>
+        <li><b>Tap any day</b> on the heatmap calendar to see what was spent that day.</li>
+        <li><b>Open Accounts</b> to add a bank like BPI, or <b>More</b> to see your box score for the day, month, or year.</li>
       </ul>
       <button class="reset" id="reset" type="button">↺ Reset demo data</button>
     </div>
@@ -219,100 +273,153 @@ select.field{appearance:none;background-image:linear-gradient(45deg,transparent 
         <div class="statusbar"><span id="clock">9:41</span><span class="cam"></span><span>▲ ● ▮</span></div>
         <div class="app" id="app">
 
-          <!-- Auth (activity_auth.xml) -->
+          <!-- Login (activity_auth.xml) -->
           <form class="auth" id="auth" autocomplete="off">
-            <div class="logo">₱K</div>
+            <svg class="ball" viewBox="0 0 108 108" aria-hidden="true"><circle cx="54" cy="54" r="54" fill="#552583"/><circle cx="54" cy="54" r="24" fill="#FDB927"/><path d="M30 54h48M54 30v48M37 37c8 8 8 26 0 34M71 37c-8 8-8 26 0 34" stroke="#552583" stroke-width="2.5" fill="none"/></svg>
             <h2>LeKwarta</h2>
             <p class="tag">Your money, your court</p>
-            <input class="field" type="text" placeholder="Email" value="juan@lekwarta.app" aria-label="Email">
-            <input class="field" type="password" placeholder="Password" value="demo1234" aria-label="Password">
-            <button class="btn-green" type="submit">Log In</button>
-            <button class="link" type="button" id="signup-link">Don't have an account? <b>Sign up</b></button>
-            <div class="demo-note">Demo: any email and password works</div>
+            <div class="court">
+              <div class="lbl">Tip-off</div>
+              <input class="field" type="text" placeholder="Email" aria-label="Email">
+              <input class="field" type="password" placeholder="Password" aria-label="Password">
+              <button class="btn-gold" type="submit">Log in</button>
+              <button class="btn-ghost" type="button" id="demo-btn">🏀 Try the demo account</button>
+              <button class="link" type="button" id="signup-link">New here? Create an account</button>
+            </div>
+            <div class="note">In this web demo, every option opens the sample account.</div>
           </form>
 
           <!-- Home -->
           <section class="view" id="v-home">
-            <div class="row" style="margin:6px 0 14px">
+            <div class="row" style="margin-top:4px">
               <div class="sp"><div class="greet" id="greet">Good morning,</div><div class="uname">Juan dela Cruz</div></div>
               <div class="avatar">JD</div>
             </div>
-            <div class="card">
+            <div class="court scoreboard">
+              <div class="lbl gold">Balance</div><br>
+              <span class="score big" id="s-bal">₱0</span>
+              <div class="sb-row">
+                <div><div class="lbl">In this month</div><span class="score pos" id="s-in">₱0</span></div>
+                <div><div class="lbl">Out this month</div><span class="score neg" id="s-out">₱0</span></div>
+              </div>
+            </div>
+            <div class="card shot" id="shot" role="button" tabindex="0" aria-label="Change daily budget">
+              <svg viewBox="0 0 62 62"><circle cx="31" cy="31" r="26" fill="none" stroke="#3A2752" stroke-width="6"/><circle id="ring" cx="31" cy="31" r="26" fill="none" stroke="#FDB927" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 999" transform="rotate(-90 31 31)"/><text id="ring-text" x="31" y="35.5" text-anchor="middle" font-family="Roboto Condensed, Roboto" font-weight="700" font-size="12.5" fill="#FDB927">0%</text></svg>
+              <div class="sp">
+                <div class="lbl gold">Shot clock</div>
+                <div class="main" id="shot-main">₱500 left today</div>
+                <div class="meta" id="shot-meta">Spent ₱0 of ₱500 · tap to change</div>
+                <span class="streak" id="streak">🏀 Start a streak today</span>
+              </div>
+            </div>
+            <div class="card" style="margin-top:10px">
               <div class="cal-head">
                 <button class="icon-btn" id="cal-prev" type="button" aria-label="Previous month">‹</button>
-                <b id="cal-month">March 2026</b>
+                <b id="cal-month">October 2026</b>
                 <button class="icon-btn" id="cal-next" type="button" aria-label="Next month">›</button>
               </div>
               <div class="cal" id="cal"></div>
-              <div class="legend"><span><i style="background:var(--red)"></i>Expense</span><span><i style="background:var(--green)"></i>Income</span><span><i style="background:var(--amber)"></i>Both</span></div>
+              <div class="legend">Less <i style="background:var(--h0)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i> More <span></span><i style="background:var(--hover)"></i> Over <span></span><b style="color:var(--green);font-weight:400">Income day</b></div>
             </div>
-            <div class="stats">
-              <div class="stat"><small>Today</small><b id="s-today">₱0</b></div>
-              <div class="stat"><small>Monthly</small><b id="s-month">₱0</b></div>
-              <div class="stat"><small>Balance</small><b id="s-bal">₱0</b></div>
-            </div>
-            <div class="section-lbl">RECENT</div>
-            <div id="recent"></div>
-          </section>
-
-          <!-- Transactions -->
-          <section class="view" id="v-txns" hidden>
-            <div class="row"><div class="h-title sp">Transactions</div><button class="date-filter" id="date-filter" type="button">📅 <span>All Time</span></button></div>
-            <div class="chips" id="txn-chips">
+            <div class="day-head"><span class="lbl" id="day-lbl" style="color:var(--text2)">Today</span><small id="day-sum"></small></div>
+            <div class="chips" id="chips">
               <button class="chip on" data-f="all" type="button">All</button>
               <button class="chip" data-f="expense" type="button">Expense</button>
               <button class="chip" data-f="income" type="button">Income</button>
               <button class="chip" data-f="transfer" type="button">Transfer</button>
             </div>
-            <div class="stats" style="margin-top:0">
-              <div class="stat"><small>Income</small><b class="pos" id="t-inc">₱0</b></div>
-              <div class="stat"><small>Expense</small><b class="neg" id="t-exp">₱0</b></div>
-              <div class="stat"><small>Balance</small><b id="t-net">₱0</b></div>
-            </div>
-            <div id="txn-list"></div>
+            <div id="day-list"></div>
           </section>
 
           <!-- Calculator -->
           <section class="view" id="v-calc" hidden>
-            <div class="h-title">Calculator</div>
+            <div class="title">Calculator</div>
+            <p class="sub">Run the numbers on savings and loans</p>
             <div class="seg" id="calc-tabs">
               <button class="on" data-t="simple" type="button">Simple</button>
               <button data-t="compound" type="button">Compound</button>
               <button data-t="loan" type="button">Loan</button>
             </div>
-            <div class="calc-form">
+            <div class="hintline" id="c-hint"></div>
+            <div class="form">
               <label for="c-p">Principal (₱)</label><input class="field" id="c-p" type="number" inputmode="decimal" value="10000">
               <label for="c-r">Annual rate (%)</label><input class="field" id="c-r" type="number" inputmode="decimal" value="5">
-              <label for="c-t">Time (years)</label><input class="field" id="c-t" type="number" inputmode="decimal" value="2">
+              <div id="c-time"><label for="c-t">Time (years)</label><input class="field" id="c-t" type="number" inputmode="decimal" value="2"></div>
               <div id="c-extra" hidden><label for="c-m">Months</label><input class="field" id="c-m" type="number" inputmode="numeric" value="12"></div>
-              <button class="btn-green" id="c-go" type="button" style="margin-top:16px">Calculate</button>
+              <button class="btn-gold" id="c-go" type="button" style="margin-top:16px">Calculate</button>
             </div>
-            <div class="result"><small id="c-label">Total Interest</small><b id="c-res">₱0.00</b><span id="c-sub"></span></div>
+            <div class="court result"><div class="lbl gold" id="c-label">Total interest</div><span class="score" id="c-res">₱0.00</span><span id="c-sub"></span></div>
           </section>
 
           <!-- Stocks -->
           <section class="view" id="v-stocks" hidden>
-            <div class="row"><div class="h-title sp">Markets</div><span class="upd" id="upd">Updating…</span></div>
-            <div class="section-lbl" style="margin-top:0">MARKET OVERVIEW</div>
+            <div class="title">Markets</div>
+            <div class="upd" id="upd">Updating…</div>
+            <div class="lbl" style="margin-top:14px">Market overview</div>
             <div class="idx-strip" id="idx"></div>
-            <div class="row"><div class="section-lbl sp">WATCHLIST</div><span class="upd" id="stock-count">0 stocks</span></div>
+            <div class="row" style="margin:18px 0 8px"><div class="lbl sp">Watchlist</div><span class="upd" id="stock-count">0 stocks</span></div>
             <div id="watch"></div>
-            <div class="demo-note" style="margin-top:10px">Sample prices. The app pulls live quotes from Finnhub.</div>
+            <div class="note">Sample prices. The app pulls live quotes from Finnhub.</div>
           </section>
 
-          <!-- Accounts (fragment_accounts.xml) -->
+          <!-- Accounts -->
           <section class="view" id="v-accounts" hidden>
-            <div class="placeholder"><div><div>🏦</div>Accounts — coming soon</div></div>
+            <div class="title">Accounts</div>
+            <p class="sub">Your roster of wallets and banks</p>
+            <div class="court row" style="padding:14px 16px;margin-bottom:12px">
+              <div class="sp"><div class="lbl gold">Net worth</div><span class="score" id="networth" style="font-size:26px">₱0</span></div>
+              <span class="upd" id="acct-count">0 accounts</span>
+            </div>
+            <div id="wallets"></div>
+            <div class="note">Tap a card to rename it or reset its balance.</div>
           </section>
 
-          <button class="fab" id="fab" type="button" aria-label="Add">+</button>
+          <!-- More -->
+          <section class="view" id="v-more" hidden>
+            <div class="title" style="margin-bottom:12px">More</div>
+            <div class="card profile">
+              <div class="avatar">JD</div>
+              <div><div style="font-weight:700;font-size:16px">Juan dela Cruz</div><div style="color:var(--text2);font-size:12.5px">juan@lekwarta.app</div><div style="color:var(--hint);font-size:11.5px" id="since">On the roster since 2026</div></div>
+            </div>
+            <div class="lbl" style="margin:18px 0 8px">Box score</div>
+            <div class="court" style="padding:14px">
+              <div class="seg" id="period-tabs">
+                <button data-p="day" type="button">Day</button>
+                <button class="on" data-p="month" type="button">Month</button>
+                <button data-p="year" type="button">Year</button>
+              </div>
+              <div class="cal-head" style="margin:10px 0 0">
+                <button class="icon-btn" id="p-prev" type="button" aria-label="Previous period">‹</button>
+                <b id="p-label">October 2026</b>
+                <button class="icon-btn" id="p-next" type="button" aria-label="Next period">›</button>
+              </div>
+              <div class="stats3">
+                <div><div class="lbl">Earned</div><span class="score pos" id="b-in">₱0</span></div>
+                <div><div class="lbl">Spent</div><span class="score neg" id="b-out">₱0</span></div>
+                <div><div class="lbl">Net</div><span class="score" id="b-net">₱0</span></div>
+              </div>
+              <div style="font-size:11.5px;color:var(--hint);margin-top:4px" id="b-count">0 transactions</div>
+              <div id="b-months" hidden><div class="lbl" style="margin-top:14px">Spending by month</div><div class="bars-m" id="bars-m"></div></div>
+              <div class="lbl" style="margin-top:14px">Where it went</div>
+              <div id="b-cats"></div>
+            </div>
+            <div class="lbl" style="margin:18px 0 8px">Settings</div>
+            <div class="card settings">
+              <button type="button" id="set-budget">Daily budget (shot clock)<span class="v" id="budget-v">₱500</span><span class="chev">›</span></button>
+              <button type="button" id="set-switch">Switch account<span class="chev" style="margin-left:auto">›</span></button>
+              <button type="button" id="set-about">About LeKwarta<span class="chev" style="margin-left:auto">›</span></button>
+              <button type="button" id="set-logout" style="color:var(--red)">Log out<span class="chev" style="margin-left:auto">›</span></button>
+            </div>
+          </section>
+
+          <button class="fab" id="fab" type="button" aria-label="Log a play">+</button>
 
           <nav class="bnav" id="bnav">
-            <button class="on" data-v="home" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
-            <button data-v="txns" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Transac.</button>
-            <button data-v="calc" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg>Calc</button>
-            <button data-v="stocks" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>Stocks</button>
-            <button data-v="accounts" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>Accounts</button>
+            <button class="on" data-v="home" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</button>
+            <button data-v="calc" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm5 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm5 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>Calc</button>
+            <button data-v="stocks" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/></svg>Stocks</button>
+            <button data-v="accounts" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 10v7h3v-7H4zm6.5 0v7h3v-7h-3zM2 22h19v-3H2v3zm15-12v7h3v-7h-3zM11.5 1L2 6v2h19V6l-9.5-5z"/></svg>Accounts</button>
+            <button data-v="more" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg>More</button>
           </nav>
 
           <div class="overlay" id="overlay" hidden><div class="sheet" id="sheet"></div></div>
@@ -326,26 +433,28 @@ select.field{appearance:none;background-image:linear-gradient(45deg,transparent 
     <div>
       <h2>What the app does</h2>
       <ul>
-        <li>Account login and registration with token-based sessions</li>
-        <li>Monthly calendar that marks expense, income, and mixed days</li>
-        <li>Logs expenses, income, and transfers between accounts, with filters and per-day grouping</li>
-        <li>Simple interest, compound interest, and loan calculators</li>
-        <li>Stock watchlist with live quotes, search, and auto-refresh every 60 seconds</li>
+        <li>Scoreboard balance, a shot clock for your daily budget, and save streaks</li>
+        <li>Heatmap calendar of daily spending; tap a day to see its transactions</li>
+        <li>Log expenses, income, and transfers, each tied to an account</li>
+        <li>Wallet-style accounts you can add, edit, reset, or delete</li>
+        <li>Box score summaries by day, month, or year</li>
+        <li>Interest and loan calculators, plus a live stock watchlist</li>
       </ul>
     </div>
     <div>
       <h2>How it's built</h2>
       <ul>
-        <li>Kotlin, Android SDK 24+, XML layouts, and Material Components</li>
+        <li>Kotlin, XML layouts, and Material Components</li>
         <li>Single activity with fragments and the Navigation component</li>
-        <li>OkHttp talking to a PHP REST API (login, dashboard, transactions)</li>
-        <li>Finnhub API for market data; watchlist saved on the device</li>
+        <li>On-device SQLite database with PBKDF2-hashed passwords</li>
+        <li>A custom Canvas view for the shot clock ring</li>
+        <li>Finnhub API over OkHttp for market data</li>
       </ul>
     </div>
     <div>
       <h2>About this demo</h2>
-      <p>The real app needs its PHP backend, so this page recreates its screens in HTML and JavaScript using the app's own colors, layouts, and logic. The data is sample data and is saved only in your browser.</p>
-      <p>The Accounts tab shows "coming soon" because it isn't finished in the app yet either.</p>
+      <p>This page recreates the Android app in HTML and JavaScript with the same colors, layouts, rules, and formulas. Data is sample data and is saved only in your browser.</p>
+      <p>The full Kotlin source is on <a href="https://github.com/Yowhann321/LeKwarta" target="_blank" rel="noopener">GitHub</a>.</p>
     </div>
   </section>
 </main>
@@ -356,300 +465,453 @@ select.field{appearance:none;background-image:linear-gradient(45deg,transparent 
 'use strict';
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const peso = n => '₱' + Math.round(n).toLocaleString('en-PH');
-const peso2 = n => '₱' + n.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const dayKey = d => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-const sameDay = (a, b) => dayKey(a) === dayKey(b);
-const daysAgo = n => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - n); return d; };
+const peso = n => (n < 0 ? '-₱' : '₱') + Math.round(Math.abs(n)).toLocaleString('en-PH');
+const peso2 = n => (n < 0 ? '-₱' : '₱') + Math.abs(n).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const startOfDay = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+const sameDay = (a, b) => startOfDay(a).getTime() === startOfDay(b).getTime();
+const daysAgo = (n, hour) => { const d = new Date(); d.setDate(d.getDate() - n); d.setHours(hour, 0, 0, 0); if (d > new Date()) d.setTime(Date.now() - 60000); return d; };
+const fmt = (d, o) => d.toLocaleDateString('en-US', o);
+const time = d => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 
 /* Categories from TransactionModel.kt */
 const CATS = { food: ['Food', '🍔'], transport: ['Transport', '🚌'], shopping: ['Shopping', '🛍️'], bills: ['Bills', '📄'], health: ['Health', '💊'], entertainment: ['Entertainment', '🎮'], other: ['Other', '💳'] };
-const icon = t => t.type === 'income' ? '💵' : t.type === 'transfer' ? '🔄' : (CATS[t.category] || CATS.other)[1];
-const ACCOUNTS = [ { id: 1, name: 'Cash', type: 'cash', start: 2500 }, { id: 2, name: 'Bank', type: 'bank', start: 18000 }, { id: 3, name: 'GCash', type: 'ewallet', start: 1200 } ];
-const acctName = id => (ACCOUNTS.find(a => a.id === +id) || {}).name || '—';
+const cat = k => CATS[k] || CATS.other;
+const icon = t => t.type === 'income' ? '💵' : t.type === 'transfer' ? '🔄' : cat(t.category)[1];
+const COLORS = ['#552583', '#C9921A', '#2F5FB3', '#B3302A', '#1F8A55', '#1C7C8C'];
+const TYPES = [['cash', 'Cash', '💵'], ['bank', 'Bank', '🏦'], ['ewallet', 'E-wallet', '📱']];
+const shade = (hex, f) => { const n = parseInt(hex.slice(1), 16); const c = s => Math.round(((n >> s) & 255) * (1 - f)); return `rgb(${c(16)},${c(8)},${c(0)})`; };
 
-/* ---------- Sample data (dates relative to today so the calendar is always populated) ---------- */
-function sampleTxns() {
-  const s = [
-    [0, 'expense', 189, 'food', 'Jollibee lunch', 1], [0, 'expense', 26, 'transport', 'Jeepney fare', 1],
-    [1, 'income', 3000, 'income', 'Weekly allowance', 2], [1, 'expense', 1450, 'bills', 'Electric bill', 3],
-    [3, 'expense', 899, 'shopping', 'Running shoes', 3], [4, 'transfer', 1000, 'transfer', 'Top up GCash', 2, 3],
-    [5, 'expense', 320, 'entertainment', 'Movie night', 1], [6, 'expense', 145, 'health', 'Vitamins', 1],
-    [8, 'income', 1500, 'income', 'Freelance logo', 3], [8, 'expense', 230, 'food', 'Groceries', 1],
-    [11, 'expense', 60, 'transport', 'Tricycle', 1], [13, 'expense', 499, 'bills', 'Mobile load', 3],
-    [16, 'income', 3000, 'income', 'Weekly allowance', 2], [19, 'expense', 275, 'food', 'Milk tea run', 1],
-    [24, 'expense', 650, 'shopping', 'School supplies', 2], [30, 'income', 3000, 'income', 'Weekly allowance', 2]
+/* ---------- Demo data (same as LeKwartaDb.loadDemoUser) ---------- */
+function fresh() {
+  const s = {
+    loggedIn: false, budget: 500, nextId: 1, watch: ['AAPL', 'MSFT'],
+    joined: daysAgo(45, 9).toISOString(),
+    accounts: [
+      { id: 1, name: 'Cash', type: 'cash', balance: 2500, color: COLORS[1] },
+      { id: 2, name: 'BPI Savings', type: 'bank', balance: 18000, color: COLORS[3] },
+      { id: 3, name: 'GCash', type: 'ewallet', balance: 1200, color: COLORS[2] }
+    ],
+    txns: [], nextAcct: 4
+  };
+  const rows = [
+    [34, 'income', 3000, 'income', 'Weekly allowance', 2], [30, 'expense', 650, 'shopping', 'School supplies', 2],
+    [27, 'income', 3000, 'income', 'Weekly allowance', 2], [24, 'expense', 275, 'food', 'Milk tea run', 1],
+    [20, 'income', 3000, 'income', 'Weekly allowance', 2], [19, 'expense', 499, 'bills', 'Mobile load', 3],
+    [16, 'expense', 60, 'transport', 'Tricycle', 1], [13, 'income', 3000, 'income', 'Weekly allowance', 2],
+    [12, 'expense', 230, 'food', 'Groceries', 1], [10, 'income', 1500, 'income', 'Freelance logo', 3],
+    [8, 'expense', 145, 'health', 'Vitamins', 1], [6, 'expense', 320, 'entertainment', 'Movie night', 1],
+    [6, 'income', 3000, 'income', 'Weekly allowance', 2], [5, 'transfer', 1000, 'transfer', 'Top up GCash', 2, 3],
+    [4, 'expense', 899, 'shopping', 'Running shoes', 3], [3, 'expense', 1450, 'bills', 'Electric bill', 3],
+    [2, 'expense', 180, 'food', 'Lugaw and coffee', 1], [1, 'expense', 95, 'transport', 'Jeepney fares', 1],
+    [1, 'income', 450, 'income', 'Sold old textbooks', 1], [0, 'expense', 189, 'food', 'Jollibee lunch', 1],
+    [0, 'expense', 26, 'transport', 'Jeepney fare', 1]
   ];
-  return s.map(([ago, type, amount, category, description, acc, to], i) => ({
-    id: i + 1, type, amount, category, description, accountId: acc, toAccountId: to || null, date: daysAgo(ago).toISOString()
-  }));
+  rows.forEach(([ago, type, amount, category, description, accountId, toAccountId], i) => {
+    addTxn(s, { type, amount, category, description, accountId, toAccountId: toAccountId || null, date: daysAgo(ago, 8 + i % 10).toISOString() });
+  });
+  return s;
 }
-const DEFAULT_WATCH = ['AAPL', 'MSFT'];
-const STOCKS = {
-  AAPL: ['Apple Inc', 228.4, 1.12], MSFT: ['Microsoft Corp', 421.7, -0.36], NVDA: ['NVIDIA Corp', 131.2, 2.05],
-  GOOGL: ['Alphabet Inc', 176.9, 0.44], AMZN: ['Amazon.com Inc', 198.3, -0.82], TSLA: ['Tesla Inc', 247.6, 3.1],
-  META: ['Meta Platforms Inc', 571.4, 0.67], NFLX: ['Netflix Inc', 702.5, -1.2], AMD: ['Advanced Micro Devices', 156.8, 1.45],
-  JPM: ['JPMorgan Chase & Co', 221.3, 0.21], KO: ['Coca-Cola Co', 70.1, -0.15], DIS: ['Walt Disney Co', 94.6, 0.58]
-};
-const INDICES = [ ['VOO', 'S&P 500', 512.3, 0.42], ['QQQ', 'NASDAQ 100', 438.1, -0.18], ['DIA', 'Dow Jones', 391.55, 0.11], ['VTI', 'Total Market', 271.8, 0.35] ];
 
-/* ---------- State (saved per browser as a convenience) ---------- */
-const KEY = 'lekwarta-demo-v2';
-let state;
-function fresh() { return { loggedIn: false, txns: sampleTxns(), watch: [...DEFAULT_WATCH], nextId: 100 }; }
-function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.txns)) return s; } catch (e) {} return fresh(); }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
-state = load();
-const txns = () => state.txns.map(t => ({ ...t, d: new Date(t.date) })).sort((a, b) => b.d - a.d || b.id - a.id);
-
-function balanceOf(acctId) {
-  const a = ACCOUNTS.find(x => x.id === acctId);
-  return state.txns.reduce((bal, t) => {
-    if (t.type === 'income' && t.accountId === acctId) return bal + t.amount;
-    if (t.type === 'expense' && t.accountId === acctId) return bal - t.amount;
-    if (t.type === 'transfer') { if (t.accountId === acctId) return bal - t.amount; if (t.toAccountId === acctId) return bal + t.amount; }
-    return bal;
-  }, a.start);
+/* Saving a transaction moves money, like LeKwartaDb.addTransaction */
+function applyEffect(s, t, sign) {
+  const acc = id => s.accounts.find(a => a.id === id);
+  const adj = (id, d) => { const a = acc(id); if (a) a.balance += d; };
+  if (t.type === 'expense') adj(t.accountId, -t.amount * sign);
+  if (t.type === 'income') adj(t.accountId, t.amount * sign);
+  if (t.type === 'transfer') { adj(t.accountId, -t.amount * sign); adj(t.toAccountId, t.amount * sign); }
 }
-const totalBalance = () => ACCOUNTS.reduce((s, a) => s + balanceOf(a.id), 0);
+function addTxn(s, t) { t.id = s.nextId++; s.txns.push(t); applyEffect(s, t, 1); }
+function delTxn(s, id) { const t = s.txns.find(x => x.id === id); if (!t) return; s.txns = s.txns.filter(x => x.id !== id); applyEffect(s, t, -1); }
 
-/* ---------- Toast ---------- */
+/* ---------- State (saved per browser) ---------- */
+const KEY = 'lekwarta-demo-v3';
+let S;
+try { S = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+if (!S || !Array.isArray(S.accounts)) S = fresh();
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+const accName = id => (S.accounts.find(a => a.id === id) || {}).name || 'Deleted account';
+const txns = () => S.txns.map(t => ({ ...t, d: new Date(t.date) })).sort((a, b) => b.d - a.d || b.id - a.id);
+const between = (from, to) => txns().filter(t => t.d >= from && t.d < to);
+const sum = (list, type) => list.filter(t => t.type === type).reduce((n, t) => n + t.amount, 0);
+const dayRange = d => { const f = startOfDay(d); const t = new Date(f); t.setDate(t.getDate() + 1); return [f, t]; };
+
 let toastTimer;
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
 
-/* ---------- Transaction row (item_transaction.xml) ---------- */
-function txnRow(t) {
-  const amt = t.type === 'expense' ? `<span class="amt neg">-${peso(t.amount)}</span>` : t.type === 'income' ? `<span class="amt pos">+${peso(t.amount)}</span>` : `<span class="amt trf">${peso(t.amount)}</span>`;
-  const sub = t.type === 'transfer' ? `${acctName(t.accountId)} → ${acctName(t.toAccountId)}` : acctName(t.accountId);
-  return `<button class="txn" type="button" data-id="${t.id}"><span class="ic">${icon(t)}</span><span class="sp"><div class="nm">${esc(t.description)}</div><div class="ac">${esc(sub)}</div></span>${amt}</button>`;
+/* ---------- Sheets and dialogs ---------- */
+function openSheet(html, center) { $('#sheet').innerHTML = html; $('#overlay').classList.toggle('center', !!center); $('#overlay').hidden = false; }
+function closeSheet() { $('#overlay').hidden = true; }
+$('#overlay').addEventListener('click', e => { if (e.target.id === 'overlay') closeSheet(); });
+function dialog(title, text, actions) {
+  openSheet(`<h3>${esc(title)}</h3><div class="dlg-text">${text}</div><div class="dlg-actions">${actions.map((a, i) => `<button type="button" data-i="${i}">${esc(a[0])}</button>`).join('')}</div>`, true);
+  document.querySelectorAll('.dlg-actions button').forEach(b => b.addEventListener('click', () => { closeSheet(); const fn = actions[+b.dataset.i][1]; if (fn) fn(); }));
+}
+function askAmount(title, current, onSave) {
+  openSheet(`<h3>${esc(title)}</h3><input class="field amount" id="ask" type="number" inputmode="decimal" value="${current}" style="margin-top:10px"><div class="dlg-actions"><button type="button" id="ask-no">Cancel</button><button type="button" id="ask-ok">Save</button></div>`, true);
+  $('#ask-no').addEventListener('click', closeSheet);
+  $('#ask-ok').addEventListener('click', () => { const v = parseFloat($('#ask').value); if (v >= 0) { closeSheet(); onSave(v); } });
+  setTimeout(() => $('#ask').select(), 50);
 }
 
 /* ---------- Home (HomeFragment.kt) ---------- */
 let calMonth = new Date(); calMonth.setDate(1);
-function greeting() { const h = new Date().getHours(); return h <= 11 ? 'Good morning,' : h <= 17 ? 'Good afternoon,' : 'Good evening,'; }
+let selDay = new Date();
+let filter = 'all';
+const greeting = () => { const h = new Date().getHours(); return h <= 11 ? 'Good morning,' : h <= 17 ? 'Good afternoon,' : 'Good evening,'; };
+
+function streak() {
+  if (S.budget <= 0) return 0;
+  const joined = startOfDay(new Date(S.joined));
+  let n = 0;
+  const d = new Date();
+  const [tf, tt] = dayRange(d);
+  if (sum(between(tf, tt), 'expense') <= S.budget) n++;
+  for (let i = 1; i <= 365; i++) {
+    d.setDate(d.getDate() - 1);
+    const [f, t] = dayRange(d);
+    if (f < joined || sum(between(f, t), 'expense') > S.budget) break;
+    n++;
+  }
+  return n;
+}
+
 function renderHome() {
   $('#greet').textContent = greeting();
-  $('#cal-month').textContent = calMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  $('#s-bal').textContent = peso(S.accounts.reduce((n, a) => n + a.balance, 0));
+  const now = new Date();
+  const mf = new Date(now.getFullYear(), now.getMonth(), 1), mt = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  const month = between(mf, mt);
+  $('#s-in').textContent = peso(sum(month, 'income'));
+  $('#s-out').textContent = peso(sum(month, 'expense'));
+
+  const [tf, tt] = dayRange(now);
+  const spent = sum(between(tf, tt), 'expense'), b = S.budget;
+  const p = b > 0 ? spent / b : 0, over = p > 1;
+  const C = 2 * Math.PI * 26;
+  $('#ring').setAttribute('stroke-dasharray', `${Math.min(p, 1) * C} 999`);
+  $('#ring').setAttribute('stroke', over ? '#FF6B6B' : '#FDB927');
+  $('#ring-text').setAttribute('fill', over ? '#FF6B6B' : '#FDB927');
+  $('#ring-text').textContent = Math.min(Math.round(p * 100), 999) + '%';
+  $('#shot-main').textContent = b <= 0 ? 'No daily budget set' : over ? `Over by ${peso(spent - b)}` : `${peso(b - spent)} left today`;
+  $('#shot-meta').textContent = `Spent ${peso(spent)} of ${peso(b)} · tap to change`;
+  const st = streak();
+  $('#streak').textContent = st > 0 ? `🏀 ${st}-day streak under budget` : '🏀 Start a streak today';
+
+  renderCalendar();
+  renderDay();
+}
+
+function heat(spent) {
+  const b = S.budget > 0 ? S.budget : 500;
+  if (spent <= 0) return 'var(--h0)';
+  if (spent > b) return 'var(--hover)';
+  if (spent > b * 0.6) return 'var(--h3)';
+  if (spent > b * 0.25) return 'var(--h2)';
+  return 'var(--h1)';
+}
+
+function renderCalendar() {
+  $('#cal-month').textContent = fmt(calMonth, { month: 'long', year: 'numeric' });
   const y = calMonth.getFullYear(), m = calMonth.getMonth();
-  const marks = {};
-  let monthSpend = 0;
-  txns().forEach(t => {
-    if (t.d.getFullYear() !== y || t.d.getMonth() !== m || t.type === 'transfer') return;
-    const day = t.d.getDate();
-    marks[day] = marks[day] && marks[day] !== t.type ? 'both' : t.type;
-    if (t.type === 'expense') monthSpend += t.amount;
+  const totals = {};
+  between(new Date(y, m, 1), new Date(y, m + 1, 1)).forEach(t => {
+    const day = t.d.getDate(); totals[day] = totals[day] || { e: 0, i: 0 };
+    if (t.type === 'expense') totals[day].e += t.amount;
+    if (t.type === 'income') totals[day].i += t.amount;
   });
-  const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate(), today = new Date();
-  let html = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(d => `<span class="dh">${d}</span>`).join('') + '<span></span>'.repeat(first);
-  for (let d = 1; d <= days; d++) {
-    const isToday = y === today.getFullYear() && m === today.getMonth() && d === today.getDate();
-    html += isToday ? `<span class="today"><b>${d}</b></span>` : `<span class="${marks[d] || ''}">${d}</span>`;
+  const today = new Date();
+  let html = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(d => `<span class="dh">${d}</span>`).join('') + '<span></span>'.repeat(new Date(y, m, 1).getDay());
+  for (let d = 1, n = new Date(y, m + 1, 0).getDate(); d <= n; d++) {
+    const date = new Date(y, m, d), tot = totals[d] || { e: 0, i: 0 };
+    const future = startOfDay(date) > startOfDay(today);
+    const cls = [sameDay(date, today) ? 'today' : '', sameDay(date, selDay) ? 'sel' : '', tot.i > 0 ? 'inc' : ''].join(' ');
+    html += `<button type="button" class="${cls}" style="background:${heat(tot.e)}" data-d="${d}" ${future ? 'disabled' : ''} aria-label="${fmt(date, { month: 'long', day: 'numeric' })}">${d}</button>`;
   }
   $('#cal').innerHTML = html;
-  const todaySpend = txns().filter(t => t.type === 'expense' && sameDay(t.d, today)).reduce((s, t) => s + t.amount, 0);
-  $('#s-today').textContent = peso(todaySpend);
-  $('#s-month').textContent = peso(monthSpend);
-  $('#s-bal').textContent = peso(totalBalance());
-  const recent = txns().slice(0, 5);
-  $('#recent').innerHTML = recent.length ? recent.map(txnRow).join('') : '<div class="empty">No transactions yet.</div>';
 }
-$('#cal-prev').addEventListener('click', () => { calMonth.setMonth(calMonth.getMonth() - 1); renderHome(); });
-$('#cal-next').addEventListener('click', () => { calMonth.setMonth(calMonth.getMonth() + 1); renderHome(); });
+$('#cal').addEventListener('click', e => {
+  const b = e.target.closest('button[data-d]'); if (!b || b.disabled) return;
+  selDay = new Date(calMonth.getFullYear(), calMonth.getMonth(), +b.dataset.d);
+  renderCalendar(); renderDay();
+});
+$('#cal-prev').addEventListener('click', () => { calMonth.setMonth(calMonth.getMonth() - 1); renderCalendar(); });
+$('#cal-next').addEventListener('click', () => { calMonth.setMonth(calMonth.getMonth() + 1); renderCalendar(); });
+$('#shot').addEventListener('click', editBudget);
+function editBudget() { askAmount('Daily budget', S.budget, v => { S.budget = v; save(); renderAll(); toast('Budget updated'); }); }
 
-/* ---------- Transactions (TransactionFragment.kt) ---------- */
-let filter = 'all', thisMonthOnly = false;
-function renderTxns() {
-  const now = new Date();
-  const list = txns().filter(t => (filter === 'all' || t.type === filter) && (!thisMonthOnly || (t.d.getMonth() === now.getMonth() && t.d.getFullYear() === now.getFullYear())));
-  const inc = list.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
-  const exp = list.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
-  $('#t-inc').textContent = peso(inc);
-  $('#t-exp').textContent = peso(exp);
-  const net = $('#t-net'); net.textContent = peso(inc - exp); net.className = inc - exp >= 0 ? 'pos' : 'neg';
-  if (!list.length) { $('#txn-list').innerHTML = '<div class="empty">No transactions yet.\nTap + to add one</div>'; return; }
-  const yest = daysAgo(1);
-  let html = '', last = '';
-  list.forEach(t => {
-    const lbl = sameDay(t.d, now) ? 'Today' : sameDay(t.d, yest) ? 'Yesterday' : t.d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    if (lbl !== last) { html += `<div class="group-lbl">${lbl}</div>`; last = lbl; }
-    html += txnRow(t);
-  });
-  $('#txn-list').innerHTML = html;
+function txnRow(t) {
+  const amt = t.type === 'expense' ? `<div class="amt neg">-${peso(t.amount)}</div>` : t.type === 'income' ? `<div class="amt pos">+${peso(t.amount)}</div>` : `<div class="amt trf">${peso(t.amount)}</div>`;
+  const sub = t.type === 'transfer' ? `${accName(t.accountId)} → ${accName(t.toAccountId)}` : t.type === 'income' ? `${accName(t.accountId)} · Income` : `${accName(t.accountId)} · ${cat(t.category)[0]}`;
+  return `<button class="txn" type="button" data-id="${t.id}"><span class="ic">${icon(t)}</span><span class="sp"><div class="nm">${esc(t.description)}</div><div class="ac">${esc(sub)}</div></span><span>${amt}<div class="tm">${time(t.d)}</div></span></button>`;
 }
-$('#txn-chips').addEventListener('click', e => {
+
+function renderDay() {
+  const [f, t] = dayRange(selDay);
+  const all = between(f, t), shown = filter === 'all' ? all : all.filter(x => x.type === filter);
+  const yest = new Date(); yest.setDate(yest.getDate() - 1);
+  const short = fmt(selDay, { month: 'short', day: 'numeric' });
+  $('#day-lbl').textContent = sameDay(selDay, new Date()) ? `Today · ${short}` : sameDay(selDay, yest) ? `Yesterday · ${short}` : fmt(selDay, { weekday: 'long' }) + ` · ${short}`;
+  $('#day-sum').textContent = `Spent ${peso(sum(all, 'expense'))} · Earned ${peso(sum(all, 'income'))}`;
+  $('#day-list').innerHTML = shown.length ? shown.map(txnRow).join('') : '<div class="empty">No plays logged this day.\nTap + to add one.</div>';
+}
+$('#chips').addEventListener('click', e => {
   const c = e.target.closest('.chip'); if (!c) return;
   filter = c.dataset.f;
-  document.querySelectorAll('#txn-chips .chip').forEach(x => x.classList.toggle('on', x === c));
-  renderTxns();
+  document.querySelectorAll('#chips .chip').forEach(x => x.classList.toggle('on', x === c));
+  renderDay();
 });
-$('#date-filter').addEventListener('click', () => { thisMonthOnly = !thisMonthOnly; $('#date-filter span').textContent = thisMonthOnly ? 'This Month' : 'All Time'; renderTxns(); });
+$('#day-list').addEventListener('click', e => { const r = e.target.closest('.txn'); if (r) showDetails(+r.dataset.id); });
 
-/* ---------- Sheets ---------- */
-function openSheet(html) { $('#sheet').innerHTML = html; $('#overlay').hidden = false; }
-function closeSheet() { $('#overlay').hidden = true; }
-$('#overlay').addEventListener('click', e => { if (e.target.id === 'overlay') closeSheet(); });
-
-function showAddDialog() {
-  let type = 'expense', cat = 'food';
-  const acctOpts = sel => ACCOUNTS.map(a => `<option value="${a.id}"${a.id === sel ? ' selected' : ''}>${a.name}</option>`).join('');
+/* ---------- Log a play (TransactionSheet.kt) ---------- */
+function showAddSheet() {
+  if (!S.accounts.length) { toast('Add an account first'); return go('accounts'); }
+  let type = 'expense', category = 'food';
+  const opts = (sel) => S.accounts.map(a => `<option value="${a.id}"${a.id === sel ? ' selected' : ''}>${esc(a.name)}  ·  ${peso(a.balance)}</option>`).join('');
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   openSheet(`
-    <h3>Log Transaction</h3>
+    <div class="grab"></div><h3>Log a play</h3>
     <label>Type</label>
-    <div class="types" id="d-types"><button type="button" data-t="expense" class="on">Expense</button><button type="button" data-t="income">Income</button><button type="button" data-t="transfer">Transfer</button></div>
-    <label for="d-amt">Amount (₱)</label><input class="field" id="d-amt" type="number" inputmode="decimal" min="0" placeholder="Amount (₱)">
-    <label for="d-desc">Description</label><input class="field" id="d-desc" type="text" maxlength="40" placeholder="Description">
-    <div id="d-cat-wrap"><label>Category</label><div class="cats" id="d-cats">${Object.entries(CATS).map(([k, [n, e]]) => `<button type="button" class="chip${k === cat ? ' on' : ''}" data-c="${k}">${e} ${n}</button>`).join('')}</div></div>
-    <div id="d-acct-wrap"><label for="d-acct">Account</label><select class="field" id="d-acct">${acctOpts(1)}</select></div>
-    <div id="d-trf-wrap" hidden>
-      <label for="d-from">From Account</label><select class="field" id="d-from">${acctOpts(2)}</select>
-      <label for="d-to">To Account</label><select class="field" id="d-to">${acctOpts(3)}</select>
-    </div>
-    <label>Date</label><div class="field" style="color:var(--text2)">📅 Today</div>
+    <div class="seg" id="d-types"><button type="button" data-t="expense" class="on">Expense</button><button type="button" data-t="income">Income</button><button type="button" data-t="transfer">Transfer</button></div>
+    <label for="d-amt">Amount</label><input class="field amount" id="d-amt" type="number" inputmode="decimal" min="0" placeholder="₱0.00">
+    <label for="d-desc">Description</label><input class="field" id="d-desc" type="text" maxlength="40" placeholder="What was it for?">
+    <div id="d-cat-wrap"><label>Category</label><div class="cats" id="d-cats"></div></div>
+    <label for="d-acct" id="d-acct-lbl">Pay from</label><select class="field" id="d-acct">${opts(S.accounts[0].id)}</select>
+    <div id="d-to-wrap" hidden><label for="d-to">To account</label><select class="field" id="d-to">${opts((S.accounts[1] || S.accounts[0]).id)}</select></div>
+    <label for="d-date">Date</label><input class="field" id="d-date" type="date" value="${iso(selDay)}" max="${iso(new Date())}">
     <div class="err" id="d-err"></div>
-    <div class="sheet-actions"><button class="btn-ghost" type="button" id="d-cancel">Cancel</button><button class="btn-green" type="button" id="d-save">Save</button></div>`);
+    <div class="actions"><button class="btn-ghost" type="button" id="d-cancel">Cancel</button><button class="btn-gold" type="button" id="d-save">Save</button></div>`);
+  const drawCats = () => $('#d-cats').innerHTML = Object.entries(CATS).map(([k, [n, e]]) => `<button type="button" class="chip${k === category ? ' on' : ''}" data-c="${k}">${e} ${n}</button>`).join('');
+  drawCats();
   const sync = () => {
     document.querySelectorAll('#d-types button').forEach(b => b.classList.toggle('on', b.dataset.t === type));
     $('#d-cat-wrap').hidden = type !== 'expense';
-    $('#d-acct-wrap').hidden = type === 'transfer';
-    $('#d-trf-wrap').hidden = type !== 'transfer';
+    $('#d-to-wrap').hidden = type !== 'transfer';
+    $('#d-acct-lbl').textContent = type === 'transfer' ? 'From account' : type === 'income' ? 'Deposit to' : 'Pay from';
+    $('#d-err').textContent = '';
   };
   $('#d-types').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { type = b.dataset.t; sync(); } });
-  $('#d-cats').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; cat = b.dataset.c; document.querySelectorAll('#d-cats .chip').forEach(x => x.classList.toggle('on', x === b)); });
+  $('#d-cats').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) { category = b.dataset.c; drawCats(); } });
   $('#d-cancel').addEventListener('click', closeSheet);
   $('#d-save').addEventListener('click', () => {
-    const amount = parseFloat($('#d-amt').value), desc = $('#d-desc').value.trim(), err = $('#d-err');
-    if (!(amount > 0)) return err.textContent = 'Please enter a valid amount';
-    if (!desc) return err.textContent = 'Please enter a description';
-    const t = { id: state.nextId++, type, amount, description: desc, date: new Date().toISOString(), toAccountId: null };
-    if (type === 'transfer') {
-      t.accountId = +$('#d-from').value; t.toAccountId = +$('#d-to').value; t.category = 'transfer';
-      if (t.accountId === t.toAccountId) return err.textContent = 'From and To accounts must be different';
-    } else {
-      t.accountId = +$('#d-acct').value; t.category = type === 'income' ? 'income' : cat;
-    }
-    state.txns.push(t); save(); closeSheet(); renderAll(); toast('Transaction saved');
+    const amount = parseFloat($('#d-amt').value), desc = $('#d-desc').value.trim();
+    const from = S.accounts.find(a => a.id === +$('#d-acct').value), to = S.accounts.find(a => a.id === +$('#d-to').value);
+    const err = !(amount > 0) ? 'Enter an amount greater than ₱0'
+      : !desc && type !== 'transfer' ? 'Add a short description'
+      : type === 'transfer' && (!to || to.id === from.id) ? 'Pick two different accounts'
+      : type !== 'income' && amount > from.balance ? `Not enough in ${from.name} (${peso(from.balance)} left)` : '';
+    if (err) return $('#d-err').textContent = err;
+    const [y, m, d] = $('#d-date').value.split('-').map(Number);
+    const date = new Date(); if (y) date.setFullYear(y, m - 1, d);
+    addTxn(S, { type, amount, category: type === 'expense' ? category : type, description: desc || `Transfer to ${to.name}`, accountId: from.id, toAccountId: type === 'transfer' ? to.id : null, date: date.toISOString() });
+    selDay = new Date(date); calMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    save(); closeSheet(); renderAll(); toast('Logged');
   });
-  setTimeout(() => $('#d-amt').focus(), 50);
+  setTimeout(() => $('#d-amt').focus(), 60);
 }
 
 function showDetails(id) {
-  const t = txns().find(x => x.id === +id); if (!t) return;
-  const typeName = { expense: 'Expense', income: 'Income', transfer: 'Transfer' }[t.type];
-  openSheet(`
-    <h3>Transaction Details</h3>
-    <div class="kv"><span>Description</span><span>${esc(t.description)}</span></div>
-    <div class="kv"><span>Type</span><span>${typeName}</span></div>
-    <div class="kv"><span>Amount</span><span class="${t.type === 'expense' ? 'neg' : t.type === 'income' ? 'pos' : 'trf'}">${peso2(t.amount)}</span></div>
-    ${t.type === 'expense' ? `<div class="kv"><span>Category</span><span>${icon(t)} ${(CATS[t.category] || CATS.other)[0]}</span></div>` : ''}
-    <div class="kv"><span>Account</span><span>${t.type === 'transfer' ? acctName(t.accountId) + ' → ' + acctName(t.toAccountId) : acctName(t.accountId)}</span></div>
-    <div class="kv"><span>Date</span><span>${t.d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span></div>
-    <div class="sheet-actions"><button class="btn-red" type="button" id="x-del">Delete</button><button class="btn-ghost" type="button" id="x-close">Close</button></div>`);
-  $('#x-close').addEventListener('click', closeSheet);
-  $('#x-del').addEventListener('click', () => {
-    openSheet(`<h3>Delete Transaction</h3><p style="color:var(--text2);margin:0">Are you sure you want to delete “${esc(t.description)}”?</p>
-      <div class="sheet-actions"><button class="btn-ghost" type="button" id="y-no">Cancel</button><button class="btn-red" type="button" id="y-yes">Delete</button></div>`);
-    $('#y-no').addEventListener('click', closeSheet);
-    $('#y-yes').addEventListener('click', () => { state.txns = state.txns.filter(x => x.id !== t.id); save(); closeSheet(); renderAll(); toast('Transaction deleted'); });
-  });
+  const t = txns().find(x => x.id === id); if (!t) return;
+  const lines = [`Amount: ${peso2(t.amount)}`, `Type: ${t.type[0].toUpperCase() + t.type.slice(1)}`];
+  if (t.type === 'expense') lines.push(`Category: ${cat(t.category)[0]}`);
+  lines.push(t.type === 'transfer' ? `From ${accName(t.accountId)} to ${accName(t.toAccountId)}` : `Account: ${accName(t.accountId)}`);
+  lines.push(`When: ${fmt(t.d, { month: 'short', day: 'numeric', year: 'numeric' })} · ${time(t.d)}`);
+  dialog(`${icon(t)}  ${t.description}`, esc(lines.join('\n')), [
+    ['Delete', () => dialog('Delete this entry?', `Its amount goes back to ${esc(accName(t.accountId))}.`, [['Cancel'], ['Delete', () => { delTxn(S, t.id); save(); renderAll(); toast('Deleted'); }]])],
+    ['Close']
+  ]);
 }
-document.getElementById('app').addEventListener('click', e => { const r = e.target.closest('.txn'); if (r) showDetails(r.dataset.id); });
 
 /* ---------- Calculator (CalculatorFragment.kt) ---------- */
 let calcTab = 'simple';
+const HINTS = { simple: 'Interest on the principal only: P × r × t', compound: 'Interest compounded monthly: P(1 + r/12)^(12t)', loan: 'Fixed monthly payment that pays off the loan' };
 function switchCalc(tab) {
   calcTab = tab;
   document.querySelectorAll('#calc-tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+  $('#c-hint').textContent = HINTS[tab];
+  $('#c-time').hidden = tab === 'loan';
   $('#c-extra').hidden = tab !== 'loan';
-  $('#c-label').textContent = tab === 'simple' ? 'Total Interest' : tab === 'compound' ? 'Total Amount' : 'Monthly Payment';
+  $('#c-label').textContent = { simple: 'Total interest', compound: 'Total amount', loan: 'Monthly payment' }[tab];
   $('#c-res').textContent = '₱0.00'; $('#c-sub').textContent = '';
 }
 $('#calc-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) switchCalc(b.dataset.t); });
 $('#c-go').addEventListener('click', () => {
   const p = parseFloat($('#c-p').value), r = parseFloat($('#c-r').value), t = parseFloat($('#c-t').value);
-  if ([p, r, t].some(Number.isNaN)) return toast('Please fill in all fields');
+  if (Number.isNaN(p) || Number.isNaN(r) || (calcTab !== 'loan' && Number.isNaN(t))) return toast('Fill in all fields');
   if (calcTab === 'simple') {
-    const interest = p * (r / 100) * t;
-    $('#c-res').textContent = peso2(interest); $('#c-sub').textContent = `Total amount: ${peso2(p + interest)}`;
+    const i = p * (r / 100) * t;
+    $('#c-res').textContent = peso2(i); $('#c-sub').textContent = `Total amount: ${peso2(p + i)}`;
   } else if (calcTab === 'compound') {
-    const n = 12, total = p * Math.pow(1 + (r / 100) / n, n * t);
+    const total = p * Math.pow(1 + (r / 100) / 12, 12 * t);
     $('#c-res').textContent = peso2(total); $('#c-sub').textContent = `Interest earned: ${peso2(total - p)}`;
   } else {
     const months = parseFloat($('#c-m').value);
-    if (Number.isNaN(months)) return toast('Please enter number of months');
+    if (!(months > 0)) return toast('Enter the number of months');
     const mr = (r / 100) / 12;
     const pay = mr === 0 ? p / months : p * mr * Math.pow(1 + mr, months) / (Math.pow(1 + mr, months) - 1);
-    $('#c-res').textContent = peso2(pay); $('#c-sub').textContent = `Total paid: ${peso2(pay * months)}`;
+    $('#c-res').textContent = peso2(pay); $('#c-sub').textContent = `Total paid: ${peso2(pay * months)}\nTotal interest: ${peso2(pay * months - p)}`;
   }
 });
 
-/* ---------- Stocks (StocksFragment.kt) ---------- */
+/* ---------- Stocks (StocksFragment.kt, sample prices) ---------- */
+const STOCKS = { AAPL: ['Apple Inc', 228.4, 1.12], MSFT: ['Microsoft Corp', 421.7, -0.36], NVDA: ['NVIDIA Corp', 131.2, 2.05], GOOGL: ['Alphabet Inc', 176.9, 0.44], AMZN: ['Amazon.com Inc', 198.3, -0.82], TSLA: ['Tesla Inc', 247.6, 3.1], META: ['Meta Platforms Inc', 571.4, 0.67], NFLX: ['Netflix Inc', 702.5, -1.2], AMD: ['Advanced Micro Devices', 156.8, 1.45], JPM: ['JPMorgan Chase & Co', 221.3, 0.21], KO: ['Coca-Cola Co', 70.1, -0.15], DIS: ['Walt Disney Co', 94.6, 0.58] };
+const INDICES = [['VOO', 'S&P 500', 512.3, 0.42], ['QQQ', 'NASDAQ 100', 438.1, -0.18], ['DIA', 'Dow Jones', 391.55, 0.11], ['VTI', 'Total Market', 271.8, 0.35]];
+const AVATARS = [['#552583', '#FDB927'], ['#5C4410', '#F5EFE0'], ['#3B2560', '#FDB927'], ['#7B45B8', '#F5EFE0']];
 const live = {};
 Object.entries(STOCKS).forEach(([k, [, p, c]]) => live[k] = { p, c });
 INDICES.forEach(([k, , p, c]) => live[k] = { p, c });
-const chg = c => `<span class="chg ${c >= 0 ? 'up' : 'down'}">${c >= 0 ? '+' : ''}${c.toFixed(2)}%</span>`;
+const chg = c => `<span class="chg ${c >= 0 ? 'up' : 'down'}">${c >= 0 ? '▲ +' : '▼ '}${c.toFixed(2)}%</span>`;
 function renderStocks() {
-  $('#idx').innerHTML = INDICES.map(([k, name]) => `<div class="idx"><small>${name}</small><b>$${live[k].p.toFixed(2)}</b>${chg(live[k].c)}</div>`).join('');
-  $('#watch').innerHTML = state.watch.length ? state.watch.map(k => `
-    <div class="stock"><span class="tick">${k.slice(0, 4)}</span><span class="sp"><div class="nm">${k}</div><div class="co">${esc(STOCKS[k][0])}</div></span>
-    <span class="px"><b>$${live[k].p.toFixed(2)}</b>${chg(live[k].c)}</span><button class="rm" type="button" data-k="${k}" aria-label="Remove ${k}">×</button></div>`).join('')
-    : '<div class="empty"><div style="font-size:28px">📈</div>Your watchlist is empty\nTap + to add stocks to track</div>';
-  $('#stock-count').textContent = `${state.watch.length} stock${state.watch.length === 1 ? '' : 's'}`;
-  $('#upd').textContent = 'Updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  $('#idx').innerHTML = INDICES.map(([k, name]) => `<div class="idx"><b>${k}</b><small>${name}</small><span class="score">$${live[k].p.toFixed(2)}</span>${chg(live[k].c)}</div>`).join('');
+  $('#watch').innerHTML = S.watch.length ? S.watch.map((k, i) => {
+    const [bg, fg] = AVATARS[i % AVATARS.length];
+    return `<div class="stock"><span class="tick" style="background:${bg};color:${fg}">${k.slice(0, 3)}</span><span class="sp"><div class="nm">${k}</div><div class="co">${esc(STOCKS[k][0])}</div></span><span class="px"><span class="score">$${live[k].p.toFixed(2)}</span>${chg(live[k].c)}</span><button class="rm" type="button" data-k="${k}" aria-label="Remove ${k}">×</button></div>`;
+  }).join('') : '<div class="empty"><div style="font-size:30px">🏀</div>Your watchlist is empty\nTap + to scout stocks to follow</div>';
+  $('#stock-count').textContent = `${S.watch.length} stock${S.watch.length === 1 ? '' : 's'}`;
+  $('#upd').textContent = 'Updated ' + time(new Date());
 }
-function tick() { Object.values(live).forEach(s => { const d = (Math.random() - .5) * .004; s.p *= 1 + d; s.c += d * 100; }); if (!$('#v-stocks').hidden) renderStocks(); }
-setInterval(tick, 5000);
+setInterval(() => { Object.values(live).forEach(s => { const d = (Math.random() - .5) * .004; s.p *= 1 + d; s.c += d * 100; }); if (current === 'stocks') renderStocks(); }, 5000);
 $('#watch').addEventListener('click', e => {
   const b = e.target.closest('.rm'); if (!b) return;
   const k = b.dataset.k;
-  openSheet(`<h3>Remove ${k}?</h3><p style="color:var(--text2);margin:0">Remove ${esc(STOCKS[k][0])} from your watchlist?</p>
-    <div class="sheet-actions"><button class="btn-ghost" type="button" id="r-no">Cancel</button><button class="btn-red" type="button" id="r-yes">Remove</button></div>`);
-  $('#r-no').addEventListener('click', closeSheet);
-  $('#r-yes').addEventListener('click', () => { state.watch = state.watch.filter(x => x !== k); save(); closeSheet(); renderStocks(); toast(`${k} removed`); });
+  dialog(`Remove ${k}?`, `Remove ${esc(STOCKS[k][0])} from your watchlist?`, [['Keep'], ['Remove', () => { S.watch = S.watch.filter(x => x !== k); save(); renderStocks(); toast(`Removed ${k}`); }]]);
 });
 function showStockSearch() {
-  openSheet(`<h3>Add Stock</h3><input class="field" id="q" type="text" placeholder="Search ticker or company" autocomplete="off"><div class="results" id="q-res"></div>`);
+  openSheet(`<div class="grab"></div><h3>Scout a stock</h3><input class="field" id="q" type="text" placeholder="Search e.g. Apple, Tesla…" autocomplete="off" style="margin-top:8px"><div id="q-res" style="margin-top:6px"></div>`);
   const draw = () => {
     const q = $('#q').value.trim().toLowerCase();
     const hits = Object.entries(STOCKS).filter(([k, [n]]) => !q || k.toLowerCase().includes(q) || n.toLowerCase().includes(q));
-    $('#q-res').innerHTML = hits.length ? hits.map(([k, [n]]) => `<button class="res" type="button" data-k="${k}"><span><b>${k}</b><br><small>${esc(n)}</small></span><small>${state.watch.includes(k) ? 'Added' : 'Common Stock'}</small></button>`).join('') : '<div class="empty">No results</div>';
+    $('#q-res').innerHTML = hits.length ? hits.map(([k, [n]]) => `<button class="res" type="button" data-k="${k}"><span><b>${k}</b><br><small>${esc(n)}</small></span><small>${S.watch.includes(k) ? 'Following' : 'Common Stock'}</small></button>`).join('') : `<div class="empty">No results for "${esc(q)}"</div>`;
   };
   let deb;
   $('#q').addEventListener('input', () => { clearTimeout(deb); deb = setTimeout(draw, 250); });
   $('#q-res').addEventListener('click', e => {
     const b = e.target.closest('.res'); if (!b) return;
     const k = b.dataset.k;
-    if (state.watch.includes(k)) return toast(`${k} is already in your watchlist`);
-    state.watch.push(k); save(); closeSheet(); renderStocks(); toast(`${k} added`);
+    if (S.watch.includes(k)) return toast(`${k} is already in your watchlist`);
+    S.watch.push(k); save(); closeSheet(); renderStocks(); toast(`✓ Added ${k} to watchlist`);
   });
-  draw(); setTimeout(() => $('#q').focus(), 50);
+  draw(); setTimeout(() => $('#q').focus(), 60);
 }
+
+/* ---------- Accounts (AccountsFragment.kt) ---------- */
+function renderAccounts() {
+  $('#networth').textContent = peso(S.accounts.reduce((n, a) => n + a.balance, 0));
+  $('#acct-count').textContent = `${S.accounts.length} account${S.accounts.length === 1 ? '' : 's'}`;
+  $('#wallets').innerHTML = S.accounts.map(a => {
+    const [, label, emoji] = TYPES.find(t => t[0] === a.type) || TYPES[1];
+    return `<button class="wallet" type="button" data-id="${a.id}" style="background:linear-gradient(135deg,${a.color},${shade(a.color, .35)})"><span class="t"><span>${label.toUpperCase()}</span><span style="font-size:18px;letter-spacing:0;opacity:1">${emoji}</span></span><span class="n">${esc(a.name)}</span><span class="b">${peso2(a.balance)}</span></button>`;
+  }).join('') || '<div class="empty">No accounts yet. Add your first one.</div>';
+}
+$('#wallets').addEventListener('click', e => { const w = e.target.closest('.wallet'); if (w) openAccount(S.accounts.find(a => a.id === +w.dataset.id)); });
+
+function openAccount(existing) {
+  let type = existing ? existing.type : 'bank', color = existing ? existing.color : COLORS[0];
+  openSheet(`
+    <div class="grab"></div><h3>${existing ? 'Edit account' : 'New account'}</h3>
+    <label for="a-name">Name</label><input class="field" id="a-name" type="text" maxlength="24" placeholder="e.g. BPI Savings, GCash" value="${existing ? esc(existing.name) : ''}">
+    <label>Type</label><div class="seg" id="a-types">${TYPES.map(([k, n]) => `<button type="button" data-t="${k}">${n}</button>`).join('')}</div>
+    <label for="a-bal">${existing ? 'Reset balance to' : 'Starting balance'}</label><input class="field amount" id="a-bal" type="number" inputmode="decimal" min="0" placeholder="₱0" value="${existing ? +existing.balance.toFixed(2) : ''}">
+    <label>Card color</label><div class="swatches" id="a-colors"></div>
+    <div class="err" id="a-err"></div>
+    <div class="actions ${existing ? 'three' : ''}">${existing ? '<button class="btn-red" type="button" id="a-del">Delete</button>' : ''}<button class="btn-ghost" type="button" id="a-cancel">Cancel</button><button class="btn-gold" type="button" id="a-save">Save</button></div>`);
+  const drawTypes = () => document.querySelectorAll('#a-types button').forEach(b => b.classList.toggle('on', b.dataset.t === type));
+  const drawColors = () => $('#a-colors').innerHTML = COLORS.map(c => `<button type="button" data-c="${c}" class="${c === color ? 'on' : ''}" style="background:${c}" aria-label="Card color"></button>`).join('');
+  drawTypes(); drawColors();
+  $('#a-types').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { type = b.dataset.t; drawTypes(); } });
+  $('#a-colors').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { color = b.dataset.c; drawColors(); } });
+  $('#a-cancel').addEventListener('click', closeSheet);
+  $('#a-save').addEventListener('click', () => {
+    const name = $('#a-name').value.trim(), bal = $('#a-bal').value === '' ? 0 : parseFloat($('#a-bal').value);
+    if (!name) return $('#a-err').textContent = 'Give the account a name';
+    if (!(bal >= 0)) return $('#a-err').textContent = 'Enter a balance of ₱0 or more';
+    if (existing) Object.assign(existing, { name, type, balance: bal, color });
+    else S.accounts.push({ id: S.nextAcct++, name, type, balance: bal, color });
+    save(); closeSheet(); renderAccounts(); toast(`${name} ${existing ? 'updated' : 'added'}`);
+  });
+  if (existing) $('#a-del').addEventListener('click', () => {
+    const n = S.txns.filter(t => t.accountId === existing.id || t.toAccountId === existing.id).length;
+    dialog(`Delete ${existing.name}?`, n ? `This also deletes its ${n} transaction${n === 1 ? '' : 's'}. This can't be undone.` : "This can't be undone.", [['Cancel'], ['Delete', () => {
+      S.txns = S.txns.filter(t => t.accountId !== existing.id && t.toAccountId !== existing.id);
+      S.accounts = S.accounts.filter(a => a.id !== existing.id);
+      save(); renderAccounts(); toast(`${existing.name} deleted`);
+    }]]);
+  });
+  if (!existing) setTimeout(() => $('#a-name').focus(), 60);
+}
+
+/* ---------- More (MoreFragment.kt) ---------- */
+let period = 'month', cursor = new Date();
+function renderMore() {
+  $('#since').textContent = 'On the roster since ' + fmt(new Date(S.joined), { month: 'long', year: 'numeric' });
+  $('#budget-v').textContent = peso(S.budget);
+  document.querySelectorAll('#period-tabs button').forEach(b => b.classList.toggle('on', b.dataset.p === period));
+  const y = cursor.getFullYear(), m = cursor.getMonth();
+  const [from, to] = period === 'day' ? dayRange(cursor) : period === 'month' ? [new Date(y, m, 1), new Date(y, m + 1, 1)] : [new Date(y, 0, 1), new Date(y + 1, 0, 1)];
+  $('#p-label').textContent = period === 'day' ? fmt(cursor, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) : period === 'month' ? fmt(cursor, { month: 'long', year: 'numeric' }) : String(y);
+  const list = between(from, to), inc = sum(list, 'income'), exp = sum(list, 'expense'), net = inc - exp;
+  $('#b-in').textContent = peso(inc); $('#b-out').textContent = peso(exp);
+  const bn = $('#b-net'); bn.textContent = (net > 0 ? '+' : '') + peso(net); bn.style.color = net >= 0 ? 'var(--gold)' : 'var(--red)';
+  $('#b-count').textContent = `${list.length} transaction${list.length === 1 ? '' : 's'}`;
+
+  $('#b-months').hidden = period !== 'year';
+  if (period === 'year') {
+    const per = Array(12).fill(0); list.filter(t => t.type === 'expense').forEach(t => per[t.d.getMonth()] += t.amount);
+    const max = Math.max(...per, 1), curM = new Date().getFullYear() === y ? new Date().getMonth() : -1;
+    $('#bars-m').innerHTML = 'JFMAMJJASOND'.split('').map((l, i) => `<div><i style="height:${Math.max(per[i] / max * 76, 3)}px;background:${per[i] <= 0 ? 'var(--h0)' : i === curM ? 'var(--gold)' : 'var(--purple-l)'}"></i><span style="${i === curM ? 'color:var(--gold)' : ''}">${l}</span></div>`).join('');
+  }
+  const byCat = {};
+  list.filter(t => t.type === 'expense').forEach(t => byCat[t.category] = (byCat[t.category] || 0) + t.amount);
+  const entries = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+  $('#b-cats').innerHTML = entries.length ? entries.map(([k, v]) => {
+    const share = v / exp;
+    return `<div class="catbar"><div class="row"><span class="sp">${cat(k)[1]}  ${cat(k)[0]}</span><small>${peso(v)} · ${Math.floor(share * 100)}%</small></div><div class="track"><i style="width:${Math.max(share * 100, 2)}%"></i></div></div>`;
+  }).join('') : '<div class="empty" style="padding:10px 0;text-align:left">No spending in this period.</div>';
+}
+$('#period-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { period = b.dataset.p; cursor = new Date(); renderMore(); } });
+const shift = d => { if (period === 'day') cursor.setDate(cursor.getDate() + d); else if (period === 'month') cursor.setMonth(cursor.getMonth() + d); else cursor.setFullYear(cursor.getFullYear() + d); renderMore(); };
+$('#p-prev').addEventListener('click', () => shift(-1));
+$('#p-next').addEventListener('click', () => shift(1));
+$('#set-budget').addEventListener('click', editBudget);
+const logout = () => { S.loggedIn = false; save(); $('#auth').hidden = false; };
+$('#set-switch').addEventListener('click', () => dialog('Switch account?', "You'll go back to the login screen to sign in as someone else.", [['Cancel'], ['Switch', logout]]));
+$('#set-logout').addEventListener('click', () => dialog('Log out?', 'Your data stays saved on this phone.', [['Cancel'], ['Log out', logout]]));
+$('#set-about').addEventListener('click', () => dialog('LeKwarta', 'Your money, your court.\n\nLeKwarta mixes LeBron James with "kwarta", Filipino slang for money. Track spending, run interest and loan numbers, and follow the market.\n\nMade by Ric Bryan Masagca, Paul Jazzmir Entena, Kurt Tracy Amador, and Johann Lijauco.', [['Close']]));
 
 /* ---------- Navigation ---------- */
 let current = 'home';
 function go(v) {
   current = v;
-  ['home', 'txns', 'calc', 'stocks', 'accounts'].forEach(k => $('#v-' + k).hidden = k !== v);
+  ['home', 'calc', 'stocks', 'accounts', 'more'].forEach(k => $('#v-' + k).hidden = k !== v);
   document.querySelectorAll('#bnav button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-  $('#fab').hidden = !['home', 'txns', 'stocks'].includes(v);
-  if (v === 'home') renderHome();
-  if (v === 'txns') renderTxns();
-  if (v === 'stocks') renderStocks();
+  const fab = $('#fab');
+  fab.hidden = !['home', 'stocks', 'accounts'].includes(v);
+  fab.classList.toggle('wide', v === 'accounts');
+  fab.textContent = v === 'accounts' ? '+  Add account' : '+';
+  renderAll();
   $('#v-' + v).scrollTop = 0;
 }
+function renderAll() {
+  if (current === 'home') renderHome();
+  if (current === 'stocks') renderStocks();
+  if (current === 'accounts') renderAccounts();
+  if (current === 'more') renderMore();
+}
 $('#bnav').addEventListener('click', e => { const b = e.target.closest('button'); if (b) go(b.dataset.v); });
-$('#fab').addEventListener('click', () => {
-  if (current === 'stocks') return showStockSearch();
-  if (current === 'home') go('txns'); // HomeFragment's FAB navigates to Transactions
-  showAddDialog();
+$('#fab').addEventListener('click', () => current === 'stocks' ? showStockSearch() : current === 'accounts' ? openAccount(null) : showAddSheet());
+
+/* ---------- Login ---------- */
+const enter = msg => { S.loggedIn = true; save(); $('#auth').hidden = true; go('home'); toast(msg); };
+$('#auth').addEventListener('submit', e => { e.preventDefault(); enter('Welcome back, Juan'); });
+$('#demo-btn').addEventListener('click', () => enter('Demo account loaded with sample data'));
+$('#signup-link').addEventListener('click', () => toast('Sign-up works in the app. Here, try the demo.'));
+if (S.loggedIn) $('#auth').hidden = true;
+
+$('#reset').addEventListener('click', () => {
+  S = fresh(); save(); closeSheet();
+  calMonth = new Date(); calMonth.setDate(1); selDay = new Date(); filter = 'all'; period = 'month'; cursor = new Date();
+  document.querySelectorAll('#chips .chip').forEach(x => x.classList.toggle('on', x.dataset.f === 'all'));
+  $('#auth').hidden = false; go('home');
 });
-function renderAll() { if (current === 'home') renderHome(); if (current === 'txns') renderTxns(); }
-
-/* ---------- Auth ---------- */
-$('#auth').addEventListener('submit', e => { e.preventDefault(); state.loggedIn = true; save(); $('#auth').hidden = true; go('home'); toast('Welcome back!'); });
-$('#signup-link').addEventListener('click', () => toast('Sign-up works the same way in the demo'));
-if (state.loggedIn) $('#auth').hidden = true;
-
-$('#reset').addEventListener('click', () => { state = fresh(); save(); $('#auth').hidden = false; closeSheet(); calMonth = new Date(); calMonth.setDate(1); go('home'); });
 
 /* ---------- Page chrome ---------- */
 const clock = () => $('#clock').textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/, '');
@@ -662,6 +924,7 @@ $('#theme-toggle').addEventListener('click', () => {
   try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
 });
 
+switchCalc('simple');
 go('home');
 })();
 </script>
