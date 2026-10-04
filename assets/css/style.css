@@ -282,3 +282,20 @@ footer.site-footer a { color: var(--muted); }
 .profile-links a { display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 16px 0; text-decoration: none; font: 400 22px/1.2 var(--display); border-bottom: 1px solid var(--line); }
 .profile-links a:hover { color: var(--accent); }
 .footer-links { display: flex; gap: 16px; }
+
+/* ---------- Certifications ---------- */
+.cert-groups { display: grid; gap: 32px; margin-top: 28px; }
+.cert-group h3 { margin: 0 0 4px; }
+.cert-group h3 span { color: var(--muted); }
+.cert-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+@media (max-width: 760px) { .cert-list { grid-template-columns: minmax(0, 1fr); } }
+.cert { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.cert img, .cert-mark { width: 48px; height: 48px; flex: none; object-fit: contain; }
+.cert-mark { display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--accent); font-size: 18px; }
+.cert-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.cert-name { font: 400 18px/1.25 var(--display); }
+.cert-meta { font-size: 13px; color: var(--muted); }
+.cert-verify { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.cert:hover .cert-name, .cert:hover .cert-verify { color: var(--accent); }
+@media (max-width: 420px) { .cert-verify { display: none; } }
+@media (max-width: 600px) { .site-header nav a.nav-wide { display: none; } }

@@ -47,9 +47,40 @@ async function loadHome() {
         if (count) count.textContent = `${pad(data.projects.length)} projects`;
         const wc = document.getElementById('writing-count');
         if (wc) wc.textContent = `${data.writing.length} pieces`;
+        renderCertifications(data.certifications || []);
     } catch (e) {
         list.innerHTML = '<li class="not-found">Projects could not be loaded.</li>';
     }
+}
+
+/* ---------- Home: certifications grouped by issuer ---------- */
+function renderCertifications(groups) {
+    const el = document.getElementById('cert-groups');
+    if (!el) return;
+    const month = ym => new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const total = groups.reduce((n, g) => n + g.items.length, 0);
+    const count = document.getElementById('cert-count');
+    if (count) count.textContent = `${pad(total)} credentials`;
+
+    el.innerHTML = groups.map(g => `
+        <div class="cert-group">
+            <h3 class="label">${esc(g.issuer)} <span>· ${g.items.length}</span></h3>
+            <ul class="cert-list">
+                ${g.items.map(c => `
+                <li>
+                    <a class="cert" href="${esc(c.url)}" target="_blank" rel="noopener">
+                        ${c.badge
+                            ? `<img src="${esc(c.badge)}" alt="" loading="lazy" width="48" height="48">`
+                            : `<span class="cert-mark" aria-hidden="true">✓</span>`}
+                        <span class="cert-text">
+                            <span class="cert-name">${esc(c.name)}</span>
+                            <span class="cert-meta">${c.kind ? esc(c.kind) + ' · ' : ''}${month(c.date)}</span>
+                        </span>
+                        <span class="cert-verify">Verify ↗</span>
+                    </a>
+                </li>`).join('')}
+            </ul>
+        </div>`).join('');
 }
 
 /* ---------- Writing list ---------- */

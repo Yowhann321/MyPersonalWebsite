@@ -173,5 +173,99 @@
       "type": "narrative",
       "content": "<p>I woke up to find a box on the sidewalk, a few feet from my door.<br>It had no such labels. No sender and receiver address,<br>only the words \"Your burden will be no more.\".</p><br><p>What could that mean? I thought while staring at the box.<br>It looked like it was in amazing condition.<br>No dents, no tears - so perfect I swore it had a glow,<br>It only added to my confusion.</p><br><p>I imagined the different items that could fit inside.<br>\"Your burden will be no more.\" I keep muttering to myself as I thought,<br>I exhausted everything my mind could provide.</p><br><p>A million dollars or a bomb, A golden ticket or poison.<br>That was the conclusion that I came to.<br>Thinking of the worst made me deathly afraid to even lay a finger on the it,<br>I don't want to move it from its position.</p><br><p>Suffering or Happiness, whatever that box is offering as a solution.<br>I hurriedly went inside my home and locked the door behind me.<br>Making sure to not be affected by the box's intention.</p><br><p>As I never left my house for the rest of the day,<br>So did the thought of the box inside my head.<br>What if I'm missing on something big? What if I end up dead?<br>Questions begging to be answered, lingering on my mind as I lay.</p><br><p>Maybe I'm just overthinking it, I thought, my courage starting to grow.<br>I got up from my bed and opened the door. What's inside the box!? You might be wondering.<br>I guess we'll never know.</p><br><p>For when I stepped outside, the box was no longer there.<br>I wondered where it went, when I heard my neighbor.<br>Bursting with joy. \"Thank Jove for this box!\" I heard them say.<br>\"We are set for life!\", those words echo in my mind every single day.</p><br><p>I wish I had enough courage<br>I wish I just had enough care.<br>But it's all too late now - all I could do is just stare.</p>"
     }
+  ],
+  "certifications": [
+    {
+      "issuer": "Google Cloud",
+      "items": [
+        {
+          "name": "Google Cloud Computing Foundations Certificate",
+          "date": "2026-03",
+          "badge": "assets/badges/86130173.png",
+          "url": "https://www.credly.com/badges/86130173-4bee-442e-bdb7-e0b76dc9bc4d/public_url"
+        },
+        {
+          "name": "Prepare Data for ML APIs on Google Cloud",
+          "kind": "Skill badge",
+          "date": "2026-03",
+          "badge": "assets/badges/cc1b4135.png",
+          "url": "https://www.credly.com/badges/cc1b4135-2956-4b69-85e5-fa8462658010/public_url"
+        },
+        {
+          "name": "Build a Secure Google Cloud Network",
+          "kind": "Skill badge",
+          "date": "2026-03",
+          "badge": "assets/badges/0098fbf0.png",
+          "url": "https://www.credly.com/badges/0098fbf0-15e5-4256-9f93-014de2cf09d7/public_url"
+        },
+        {
+          "name": "Implement Load Balancing on Compute Engine",
+          "kind": "Skill badge",
+          "date": "2026-03",
+          "badge": "assets/badges/1f250d24.png",
+          "url": "https://www.credly.com/badges/1f250d24-307b-42e7-b24e-947dfa382274/public_url"
+        },
+        {
+          "name": "Set Up an App Dev Environment on Google Cloud",
+          "kind": "Skill badge",
+          "date": "2026-03",
+          "badge": "assets/badges/8cfd3366.png",
+          "url": "https://www.credly.com/badges/8cfd3366-e05d-46de-90fa-bdc85f96355f/public_url"
+        }
+      ]
+    },
+    {
+      "issuer": "Coursera",
+      "items": [
+        {
+          "name": "Google Project Management Professional Certificate",
+          "kind": "Professional certificate",
+          "date": "2026-03",
+          "badge": "assets/badges/5b47d2d1.png",
+          "url": "https://www.credly.com/badges/5b47d2d1-3c8e-4177-b232-2f145eacb0d6/public_url"
+        },
+        {
+          "name": "Full Stack Web Development",
+          "kind": "Course by Amazon",
+          "date": "2026-03",
+          "url": "https://www.coursera.org/account/accomplishments/verify/X6D05XS8IE10"
+        },
+        {
+          "name": "Advanced Commands in Linux",
+          "kind": "Guided project",
+          "date": "2025-09",
+          "url": "https://www.coursera.org/account/accomplishments/verify/QKNL7T8YO6GX"
+        },
+        {
+          "name": "Introduction to Bash Shell Scripting",
+          "kind": "Guided project",
+          "date": "2025-09",
+          "url": "https://www.coursera.org/account/accomplishments/verify/4P7P56BK75ZH"
+        }
+      ]
+    },
+    {
+      "issuer": "Cisco",
+      "items": [
+        {
+          "name": "Ethical Hacker",
+          "date": "2025-03",
+          "badge": "assets/badges/237cd4e8.png",
+          "url": "https://www.credly.com/badges/237cd4e8-9633-4b02-a7a4-98347a44237c/public_url"
+        },
+        {
+          "name": "CCNA: Switching, Routing, and Wireless Essentials",
+          "date": "2025-03",
+          "badge": "assets/badges/55d9e220.png",
+          "url": "https://www.credly.com/badges/55d9e220-569c-4629-849f-901b9612d8de/public_url"
+        },
+        {
+          "name": "CCNA: Introduction to Networks",
+          "date": "2025-02",
+          "badge": "assets/badges/e5a452b0.png",
+          "url": "https://www.credly.com/badges/e5a452b0-50a2-4d46-899e-5f94bb6960bf/public_url"
+        }
+      ]
+    }
   ]
 }
