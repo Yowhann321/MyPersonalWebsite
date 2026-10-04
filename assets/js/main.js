@@ -135,11 +135,13 @@ async function loadDetail() {
                 ${links.length ? `<div class="btn-row">${links.map(l =>
                     `<a class="btn ${l.primary ? 'solid' : ''}" href="${esc(l.href)}"${isExternal(l.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(l.label)} <span aria-hidden="true">${isExternal(l.href) ? '↗' : '→'}</span></a>`).join('')}</div>` : ''}
             </header>
-            <dl class="meta-grid rise d1">
+            <dl class="meta-grid rise d1" style="--cols:${3 + (item.role ? 1 : 0) + (item.origin ? 1 : 0)}">
                 <div><dt>Year</dt><dd>${esc(item.year)}</dd></div>
                 <div><dt>Category</dt><dd>${esc(item.category)}</dd></div>
-                <div><dt>Built with</dt><dd>${(item.tags || []).map(esc).join(', ')}</dd></div>
+                ${item.role ? `<div><dt>My role</dt><dd>${esc(item.role)}</dd></div>` : ''}
                 <div><dt>Team</dt><dd>${esc(item.team || 'Solo')}</dd></div>
+                ${item.origin ? `<div><dt>Origin</dt><dd>${esc(item.origin)}</dd></div>` : ''}
+                <div class="wide"><dt>Built with</dt><dd>${(item.tags || []).map(esc).join(', ')}</dd></div>
             </dl>
             <div class="prose rise d2">${item.content}</div>`;
     } else {

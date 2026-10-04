@@ -196,13 +196,14 @@ footer.site-footer a { color: var(--muted); }
 
 .meta-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
     gap: 0;
     border-top: 1px solid var(--ink);
     border-bottom: 1px solid var(--line);
     margin-bottom: 48px;
 }
 .meta-grid > div { padding: 14px 16px 16px 0; }
+.meta-grid > .wide { grid-column: 1 / -1; border-top: 1px solid var(--line); }
 .meta-grid dt { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .meta-grid dd { margin: 0; font-size: 15px; }
 .meta-grid dd a { color: var(--accent); }

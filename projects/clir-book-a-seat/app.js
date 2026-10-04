@@ -351,7 +351,7 @@
   }
 
   function footer() {
-    return `<footer class="foot">A capstone concept by Group 1: Johann Lijauco, Denzel Adrienne Arciaga, Kurt Tracy Amador, Rafael Mercado, and Daniela Madrasto. Not affiliated with or endorsed by Mapúa Malayan Colleges Laguna.</footer>`;
+    return `<footer class="foot">A System Analysis and Design Machine Problem by Group 1: Johann Lijauco, Denzel Adrienne Arciaga, Kurt Tracy Amador, Rafael Mercado, and Daniela Madrasto. Not affiliated with or endorsed by Mapúa Malayan Colleges Laguna.</footer>`;
   }
 
   function statsHTML(admin) {
