@@ -110,6 +110,22 @@ async function loadWriting() {
     render('all');
 }
 
+/* Cipher Lab's title starts as random characters and resolves letter by letter. */
+function decryptTitle(h1) {
+    if (!h1 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const target = h1.textContent;
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*';
+    let step = 0;
+    h1.setAttribute('aria-label', target);
+    const timer = setInterval(() => {
+        const done = Math.floor(step / 2);
+        h1.textContent = [...target].map((c, i) => (c === ' ' || i < done) ? c : glyphs[Math.floor(Math.random() * glyphs.length)]).join('');
+        step++;
+        if (done >= target.length) { clearInterval(timer); h1.textContent = target; }
+    }, 45);
+    setTimeout(() => { clearInterval(timer); h1.textContent = target; }, 2000);   // always end on the real title
+}
+
 /* ---------- Detail page (projects and writing) ---------- */
 async function loadDetail() {
     const params = new URLSearchParams(location.search);
@@ -127,8 +143,10 @@ async function loadDetail() {
 
     if (type === 'projects') {
         const links = item.links || [];
+        document.body.dataset.project = item.id;   // picks the project's banner theme in projects.css
         el.innerHTML = `
-            <header class="page-title rise">
+            <header class="page-title proj-hero rise">
+                <div class="proj-art" aria-hidden="true"></div>
                 <a class="back" href="index.html#work">← All projects</a>
                 <h1>${esc(item.title)}</h1>
                 <p class="lede">${esc(item.summary)}</p>
@@ -144,6 +162,7 @@ async function loadDetail() {
                 <div class="wide"><dt>Built with</dt><dd>${(item.tags || []).map(esc).join(', ')}</dd></div>
             </dl>
             <div class="prose rise d2">${item.content}</div>`;
+        if (item.id === 'cipher-lab') decryptTitle(el.querySelector('.proj-hero h1'));
     } else {
         el.innerHTML = `
             <header class="page-title rise">
