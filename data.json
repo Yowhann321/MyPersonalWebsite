@@ -51,6 +51,33 @@
       ],
       "content": "<p>Cipher Lab started as a Python console program for our Information Security course. It implements four ciphers: <b>Monoalphabetic</b>, <b>Vernam</b>, <b>Kamasutra</b>, and <b>Kamasutra the Vernam</b>, a cipher our group designed that chains the other two together and flips letter case along the way.</p><h2>What it does</h2><ul><li>Generates a fresh random key every session for the substitution ciphers.</li><li>Encrypts and decrypts while preserving upper and lower case, spaces, and punctuation.</li><li>Explains its work, printing each letter's numeric value, the key it lines up with, and the wrap-around math.</li><li>A <code>CipherManager</code> menu ties the four programs together into one application.</li></ul><h2>Bringing it to the web</h2><p>To make the project easy to try, I ported each algorithm to JavaScript so it runs in the browser with no install. The web version keeps the same rules as the Python original, turns the console explanations into step-by-step tables, and shows the original Python source beside each cipher.</p>",
       "team": "Course group project"
+    },
+    {
+      "id": "pong-reimagined",
+      "title": "Pong Reimagined",
+      "year": "2023",
+      "category": "Game · Game Jam",
+      "summary": "A one-button arcade game from a 2023 game jam where you flap a ball between goals and dodge voids, rebuilt so you can play it right in the browser.",
+      "tags": [
+        "JavaScript",
+        "Canvas",
+        "Web Audio",
+        "Python",
+        "Pygame"
+      ],
+      "team": "Team Xyke · Project manager",
+      "links": [
+        {
+          "label": "Play the game",
+          "href": "projects/pong-reimagined/",
+          "primary": true
+        },
+        {
+          "label": "Source on GitHub",
+          "href": "https://github.com/Yowhann321/Pong-Reimagined"
+        }
+      ],
+      "content": "<p>Pong Reimagined turns Pong into a one-button game: you are the ball. Gravity pulls you down, a tap makes you flap, and you have to hit the green goal on each wall to bounce back and score. Red walls and spinning voids end the run, and the game speeds up as you climb through three levels.</p><div class=\"shots\" style=\"grid-template-columns:repeat(3,minmax(0,1fr))\"><figure><img src=\"projects/pong-reimagined/screenshots/level-1.png\" alt=\"Pong Reimagined Level 1 · Outer rim\" loading=\"lazy\" style=\"aspect-ratio:16/9\"><figcaption>Level 1 · Outer rim</figcaption></figure><figure><img src=\"projects/pong-reimagined/screenshots/level-up.png\" alt=\"Pong Reimagined Level up\" loading=\"lazy\" style=\"aspect-ratio:16/9\"><figcaption>Level up</figcaption></figure><figure><img src=\"projects/pong-reimagined/screenshots/level-3.png\" alt=\"Pong Reimagined Level 3 · The Void\" loading=\"lazy\" style=\"aspect-ratio:16/9\"><figcaption>Level 3 · The Void</figcaption></figure></div><h2>The game jam</h2><p>The original was built in Python with Pygame and a Tkinter menu by Team Xyke for a game jam in October 2023. I was the team's <b>project manager</b>, keeping the project scoped, on schedule, and shipped by the deadline. The hand-drawn space backgrounds and sprites are the team's own artwork.</p><h2>The web remake</h2><ul><li>Rebuilt in plain JavaScript and Canvas so it runs in any browser, on desktop or phone, with no install.</li><li>Added a menu, how-to-play screen, countdown, level banners with background crossfades, and a saved best score.</li><li>Made the voids fair: they flash before becoming deadly and never spawn in the ball's path, verified with an automated bot over thousands of spawns.</li><li>Added particles, a ball trail, glowing goals, and screen shake that respects reduced-motion settings.</li><li>Replaced the audio with sound effects synthesized using the Web Audio API, and removed the background music, which the team didn't create.</li></ul>"
     }
   ],
   "writing": [
