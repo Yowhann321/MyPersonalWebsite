@@ -8,17 +8,17 @@
 <script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ---------- Page (matches the portfolio) ---------- */
 :root{
-  --bg:#fbfaf7; --surface:#f3f1ec; --ink:#141414; --muted:#6b6a66; --line:#e4e1da; --accent:#d9481f;
-  --display:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --bg:#ffffff; --surface:#f6f8fa; --ink:#0f172a; --muted:#57606a; --line:#e5e7eb; --accent:#2563eb;
+  --display:'Inter',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#121211; --surface:#1b1b19; --ink:#f2efe9; --muted:#9a978f; --line:#2b2a27; --accent:#ff7a4f; }
+  :root:not([data-theme="light"]){ --bg:#0d1117; --surface:#161b22; --ink:#e6edf3; --muted:#8b949e; --line:#30363d; --accent:#58a6ff; }
 }
-:root[data-theme="dark"]{ --bg:#121211; --surface:#1b1b19; --ink:#f2efe9; --muted:#9a978f; --line:#2b2a27; --accent:#ff7a4f; }
+:root[data-theme="dark"]{ --bg:#0d1117; --surface:#161b22; --ink:#e6edf3; --muted:#8b949e; --line:#30363d; --accent:#58a6ff; }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans)}
@@ -34,8 +34,8 @@ a{color:inherit}
 
 .stage{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:56px;align-items:center;padding-top:24px;padding-bottom:72px}
 @media (max-width:880px){.stage{grid-template-columns:minmax(0,1fr);gap:36px;justify-items:center}}
-.intro h1{font:400 clamp(48px,8vw,88px)/1 var(--display);letter-spacing:-.035em;margin:16px 0 18px}
-.intro h1 em{font-style:italic;color:var(--accent)}
+.intro h1{font:600 clamp(36px,5.6vw,60px)/1.05 var(--display);letter-spacing:-.03em;margin:16px 0 18px}
+.intro h1 em{font-style:normal;color:var(--accent)}
 .intro p{font-size:19px;max-width:520px;margin:0 0 20px}
 .intro .tips{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid var(--line)}
 .intro .tips li{padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:15px}
@@ -47,7 +47,7 @@ a{color:inherit}
 
 .details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-bottom:96px}
 @media (max-width:820px){.details{grid-template-columns:minmax(0,1fr);gap:24px}}
-.details h2{font:400 26px/1.2 var(--display);margin:0 0 12px;padding-top:14px;border-top:1px solid var(--ink)}
+.details h2{font:600 20px/1.3 var(--display);margin:0 0 12px;padding-top:14px;border-top:1px solid var(--ink)}
 .details ul{margin:0;padding-left:18px;color:var(--muted)}
 .details li{margin-bottom:8px}
 .details p{color:var(--muted);margin:0 0 12px}
@@ -257,7 +257,7 @@ input[type=date].field{color-scheme:dark}
   <section class="stage">
     <div class="intro">
       <a class="back" href="../../work.html?type=projects&id=lekwarta">← Project overview</a>
-      <h1>LeKwarta, <em>in your browser.</em></h1>
+      <h1>LeKwarta</h1>
       <p>LeKwarta is an Android finance app in Kotlin, styled like a basketball arena. This is a working recreation of every screen with sample data, so you can try it without installing anything.</p>
       <ul class="tips">
         <li><b>Tap +</b> to log a play. The shot clock, calendar, and account balances update right away.</li>

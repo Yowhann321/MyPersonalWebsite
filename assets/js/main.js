@@ -129,7 +129,7 @@ async function loadDetail() {
         const links = item.links || [];
         el.innerHTML = `
             <header class="page-title rise">
-                <a class="back" href="index.html#work">← Selected work</a>
+                <a class="back" href="index.html#work">← All projects</a>
                 <h1>${esc(item.title)}</h1>
                 <p class="lede">${esc(item.summary)}</p>
                 ${links.length ? `<div class="btn-row">${links.map(l =>
