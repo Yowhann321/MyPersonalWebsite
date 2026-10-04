@@ -276,3 +276,9 @@ footer.site-footer a { color: var(--muted); }
 .prose .shots figure { margin: 0; }
 .prose .shots img { width: 100%; aspect-ratio: 9 / 20; object-fit: cover; object-position: top; border-radius: 14px; border: 1px solid var(--line); background: #0d0d0d; display: block; }
 .prose .shots figcaption { font: 500 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 6px; }
+
+/* ---------- Profile links ---------- */
+.profile-links { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border-top: 1px solid var(--line); }
+.profile-links a { display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 16px 0; text-decoration: none; font: 400 22px/1.2 var(--display); border-bottom: 1px solid var(--line); }
+.profile-links a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 16px; }
