@@ -269,3 +269,10 @@ footer.site-footer a { color: var(--muted); }
     .work-row, .work-row .arrow { transition: none; }
     html { scroll-behavior: auto; }
 }
+
+/* ---------- Screenshot gallery ---------- */
+.prose .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 8px 0 24px; }
+@media (max-width: 640px) { .prose .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.prose .shots figure { margin: 0; }
+.prose .shots img { width: 100%; aspect-ratio: 9 / 18; object-fit: cover; object-position: top; border-radius: 14px; border: 1px solid var(--line); background: #0d0d0d; display: block; }
+.prose .shots figcaption { font: 500 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 6px; }
